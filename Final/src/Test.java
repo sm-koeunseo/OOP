@@ -7,5 +7,4 @@ public class Test {
 		System.out.println("현지");
 		System.out.println("영주");
 	}
-
 }
