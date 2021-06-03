@@ -10,7 +10,7 @@ public class db {
     	boolean re = false;
 
         //String url = "jdbc:mysql://koeunseo.dothome.co.kr/myadmin/koeunseo";
-		String url = "jdbc:mysql://127.0.0.1:3306/sys?serverTimezone=UTC";;
+		String url = "jdbc:mysql://127.0.0.1:3306/sys?serverTimezone=UTC";
 		String id = "root";
 		String pw = "1118";
 		
