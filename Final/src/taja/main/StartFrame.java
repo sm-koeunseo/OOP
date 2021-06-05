@@ -14,7 +14,7 @@ public class StartFrame extends JFrame {
 	private TextField tf_setting = new TextField();
 	
 	public StartFrame() {
-		setSize(500, 400);
+		setSize(800, 600);
         getContentPane().setLayout(cards);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -24,7 +24,8 @@ public class StartFrame extends JFrame {
 //        getContentPane().add("Line", new Line(this));
 //        getContentPane().add("Game", new Game(this));
 //        getContentPane().add("Setting", new Setting(this));
-        
+
+		//setUndecorated(true);
         Dimension frameSize = getSize();	//프레임의 크기 구하기
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();	//모니터 화면의 크기 구하기
 		setLocation((screenSize.width - frameSize.width)/2, (screenSize.height - frameSize.height)/2);
