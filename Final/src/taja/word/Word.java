@@ -1,7 +1,9 @@
+package taja.word;
+import taja.main.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-
 import javax.swing.*;
 
 public class Word extends JPanel implements KeyListener {

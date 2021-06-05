@@ -1,7 +1,7 @@
 package taja.game;
-import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import java.awt.*;
+import javax.swing.*;
 
 public class GameFrame extends JFrame{
 	
@@ -10,7 +10,7 @@ public class GameFrame extends JFrame{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLayout(new FlowLayout());
 	    
-	    add("Center", new Game());
+	    //add("Center", new Game());
 	    setVisible(true);
 	}
 

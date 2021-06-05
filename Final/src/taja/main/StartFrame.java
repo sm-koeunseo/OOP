@@ -1,3 +1,7 @@
+package taja.main;
+import taja.alphabet.*;
+import taja.word.*;
+
 import java.awt.*;
 import javax.swing.*;
 
