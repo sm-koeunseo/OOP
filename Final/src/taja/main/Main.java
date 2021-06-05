@@ -19,6 +19,9 @@ public class Main extends JPanel implements ActionListener{
 		setLayout(new BorderLayout());
 		titlepanel = new Panel();
 		
+        Color color = new Color(239, 239, 143);
+        setBackground(color);
+		
 		JLabel titlelabel = new JLabel("윤용익 교수님과 함께하는 객체 타자연습");
 //		BufferedImage image;
 //		File imageFile = new File("교수님.png");
