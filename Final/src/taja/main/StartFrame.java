@@ -8,7 +8,7 @@ import javax.swing.*;
 public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
 	private TextField tf_alphabet = new TextField();
-	private JTextField tf_word = new JTextField();
+	private TextField tf_word = new TextField();
 	private TextField tf_line = new TextField();
 	private TextField tf_game = new TextField();
 	private TextField tf_setting = new TextField();
@@ -46,10 +46,30 @@ public class StartFrame extends JFrame {
     		tf_setting.requestFocus();
     }
 	
+//	public void changeLabel(String name) {
+//    	//cards.show(getContentPane(), name);
+//    	
+//		JLabel alphabetlabel = new JLabel("    낱말연습: 한 글자씩 자리를 익혀보세요!");
+//		JLabel wordlabel = new JLabel("    단어연습: 자바 프로그래밍에 필요한 여러 단어들을 학습합니다!");
+//		JLabel linelabel = new JLabel("    긴글연습: 실제로 프로그래밍을 하는 것처럼 줄글로 마스터!");
+//		JLabel gamelabel = new JLabel("    게임: 위에서 떨어지는 단어들을 없애주세요!");
+//		
+//    	if (name.equals("Alphabet")) {
+//    		tf_alphabet.requestFocus();
+//    	else if (name.equals("Word"))
+//    		tf_word.requestFocus();
+//    	else if (name.equals("Line"))
+//    		tf_line.requestFocus();
+//    	else if (name.equals("Game"))
+//    		tf_game.requestFocus();
+//    	else if (name.equals("Setting"))
+//    		tf_setting.requestFocus();
+//    }
+	
 	public TextField getAlphabet() {
 		return tf_alphabet;
 	}
-	public JTextField getWord() {
+	public TextField getWord() {
 		return tf_word;
 	}
 	public TextField getLine() {
