@@ -5,7 +5,10 @@ public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
 	private TextField tf_alphabet = new TextField();
 	private TextField tf_word = new TextField();
-
+	private TextField tf_line = new TextField();
+	private TextField tf_game = new TextField();
+	private TextField tf_setting = new TextField();
+	
 	public StartFrame() {
 		setSize(500, 400);
         getContentPane().setLayout(cards);
@@ -14,6 +17,9 @@ public class StartFrame extends JFrame {
         getContentPane().add("Main", new Main(this));
         getContentPane().add("Alphabet", new Alphabet(this));
         getContentPane().add("Word", new Word(this));
+//        getContentPane().add("Line", new Line(this));
+//        getContentPane().add("Game", new Game(this));
+//        getContentPane().add("Setting", new Setting(this));
         
         Dimension frameSize = getSize();	//프레임의 크기 구하기
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();	//모니터 화면의 크기 구하기
@@ -28,6 +34,12 @@ public class StartFrame extends JFrame {
     		tf_alphabet.requestFocus();
     	else if (name.equals("Word"))
     		tf_word.requestFocus();
+    	else if (name.equals("Line"))
+    		tf_line.requestFocus();
+    	else if (name.equals("Game"))
+    		tf_game.requestFocus();
+    	else if (name.equals("Setting"))
+    		tf_setting.requestFocus();
     }
 	
 	public TextField getAlphabet() {
@@ -36,7 +48,16 @@ public class StartFrame extends JFrame {
 	public TextField getWord() {
 		return tf_word;
 	}
-	
+	public TextField getLine() {
+		return tf_line;
+	}
+	public TextField getGame() {
+		return tf_game;
+	}
+	public TextField getSetting() {
+		return tf_setting;
+	}
+		
 //	public void newPanel(String name) {
 //		getContentPane().add("Main", new Main(this));
 //	}
