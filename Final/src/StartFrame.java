@@ -4,7 +4,7 @@ import javax.swing.*;
 public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
 	private TextField tf_alphabet = new TextField();
-	private TextField tf_word = new TextField();
+	private JTextField tf_word = new JTextField();
 
 	public StartFrame() {
 		setSize(500, 400);
@@ -33,7 +33,7 @@ public class StartFrame extends JFrame {
 	public TextField getAlphabet() {
 		return tf_alphabet;
 	}
-	public TextField getWord() {
+	public JTextField getWord() {
 		return tf_word;
 	}
 	
