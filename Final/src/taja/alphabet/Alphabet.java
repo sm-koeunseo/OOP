@@ -4,27 +4,32 @@ import taja.main.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 public class Alphabet extends JPanel implements KeyListener {
-	private StartFrame f;
-	private Button btn_back, btn_next;
-	private TextField tf;
-	private ArrayList<Character> alphalist = new ArrayList<Character>();
-	private ArrayList<Character> list = new ArrayList<Character>();
-	private int maxCount;
-	private int count = 0, ranNum;
-	// private String str = "";
-	// private Label label;
-	private JLabel AlphaOne, AlphaTwo, AlphaThree, AlphaFour;
-	private JLabel Title;
-	Queue<String> queue = new LinkedList<String>();
-	int front = 0;
+	private StartFrame f;		//시작 frame
+	private Button btn_back;	//홈버튼
+	private TextField tf;		//사용자 입력 텍스트 필드
+	private ArrayList<Character> alphalist = new ArrayList<Character>();	//전체 알파벳 리스트
+	private ArrayList<Character> list = new ArrayList<Character>();			//랜덤하게 뽑은 20개 알파벳 리스트
+	private int maxCount;				// 입력할 알파벳 개수(20개)
+	private int count = 0, ranNum;		// 사용자가 입력한 알파벳 개수 count, 랜덤하게 알파벳 뽑을 때 사용하는 변수
+	private JLabel AlphaOne, AlphaTwo, AlphaThree, AlphaFour;		//입력할 알파벳들이 뜨는 label 4개 
+	private JLabel Title;				//게임 제목
+	Queue<String> queue = new LinkedList<String>();	//사용자가 알파벳 하나를 입력할 때마다 순차적으로 뒤에 것을 출력해주기 위해 FIFO 형식의 queue를 사용
+	int front = 0;				//alphalist에서 사용자 입력에 따라 front 하나씩 뒤로 가게끔	
 
-	public Alphabet(StartFrame f) {
+	public Alphabet(StartFrame f) {			//생성자
 		this.f = f;
 		setLayout(null);
+		
+		Color color = new Color(239, 239, 143);
+        setBackground(color);
 
 		list = MakeList();
 		maxCount = list.size();
@@ -51,13 +56,13 @@ public class Alphabet extends JPanel implements KeyListener {
 		});
 
 		AlphaOne = new JLabel();
-		AlphaOne.setFont(new Font("Serif", Font.BOLD, 30));
+		AlphaOne.setFont(new Font("Serif", Font.BOLD, 38));
 		AlphaTwo = new JLabel();
-		AlphaTwo.setFont(new Font("Serif", Font.BOLD, 30));
+		AlphaTwo.setFont(new Font("Serif", Font.BOLD, 38));
 		AlphaThree = new JLabel();
-		AlphaThree.setFont(new Font("Serif", Font.BOLD, 30));
+		AlphaThree.setFont(new Font("Serif", Font.BOLD, 38));
 		AlphaFour = new JLabel();
-		AlphaFour.setFont(new Font("Serif", Font.BOLD, 30));
+		AlphaFour.setFont(new Font("Serif", Font.BOLD, 38));
 
 		AlphaOne.setText("");
 		AlphaTwo.setText(list.get(0).toString());
@@ -68,10 +73,10 @@ public class Alphabet extends JPanel implements KeyListener {
 			queue.add(list.get(j).toString());
 		}
 
-		AlphaOne.setBounds(200, 150, 40, 100);
-		AlphaTwo.setBounds(320, 150, 40, 100);
-		AlphaThree.setBounds(440, 150, 40, 100);
-		AlphaFour.setBounds(560, 150, 40, 100);
+		AlphaOne.setBounds(200, 100, 40, 100);
+		AlphaTwo.setBounds(315, 95, 40, 100);
+		AlphaThree.setBounds(440, 100, 40, 100);
+		AlphaFour.setBounds(560, 100, 40, 100);
 
 		add(AlphaOne);
 		add(AlphaTwo);
@@ -95,22 +100,45 @@ public class Alphabet extends JPanel implements KeyListener {
 		return list;
 	}
 
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2= (Graphics2D)g;
+		//AlphaOne
+		g2.setColor(Color.white);
+		g2.fill(new RoundRectangle2D.Double(170, 100, 85, 105, 30, 30)); //배경
+		g2.setColor(Color.red);
+		g2.setStroke(new BasicStroke(5));
+		g2.draw(new RoundRectangle2D.Double(170, 100, 85, 105, 30, 30)); //테두리
+		
+		//AlphaTwo
+		g2.setColor(Color.DARK_GRAY);
+		g2.fill(new RoundRectangle2D.Double(290, 100, 90, 110, 30, 30)); //그림자
+		g2.setColor(Color.white);
+		g2.fill(new RoundRectangle2D.Double(285, 95, 85, 105, 30, 30)); //배경
+		g2.setColor(Color.red);
+		g2.setStroke(new BasicStroke(5));
+		g2.draw(new RoundRectangle2D.Double(285, 95, 85, 105, 30, 30)); //테두리
+		
+		//AlphaThree
+		g2.setColor(Color.white);
+		g2.fill(new RoundRectangle2D.Double(410, 100, 85, 105, 30, 30)); //배경
+		g2.setColor(Color.red);
+		g2.setStroke(new BasicStroke(5));
+		g2.draw(new RoundRectangle2D.Double(410, 100, 85, 105, 30, 30)); //테두리
+		
+		//AlphaFour
+		g2.setColor(Color.white);
+		g2.fill(new RoundRectangle2D.Double(530, 100, 85, 105, 30, 30)); //배경
+		g2.setColor(Color.red);
+		g2.setStroke(new BasicStroke(5));
+		g2.draw(new RoundRectangle2D.Double(530, 100, 85, 105, 30, 30)); //테두리
+	}
+	
 	public void keyTyped(KeyEvent e) {
-		// System.out.println("keyTyped:" + e.getKeyChar());
-		// System.out.println("keyTyped:" + e.);
-//		switch(e.getKeyChar()) {
-//		case 't':System.out.println('t'); break;
-//		case 'e':System.out.println('e'); break;
-//		case 'x':System.out.println('x'); break;
-//		case 'ㅅ':System.out.println('ㅅ'); break;
-//		}
 		if (count < maxCount) {
-			String tfstring = "";
 
 			if (list.get(count++).equals(e.getKeyChar())) {
 				System.out.println("right");
-				
-				tfstring += list.get(count++);
 
 				queue.poll();
 
@@ -149,7 +177,6 @@ public class Alphabet extends JPanel implements KeyListener {
 
 			} else {
 				System.out.println("false");
-				tf.setText(tfstring);
 				count--;
 			}
 
@@ -161,4 +188,7 @@ public class Alphabet extends JPanel implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 	}
+	
+
+	
 }
