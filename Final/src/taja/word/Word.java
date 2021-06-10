@@ -48,6 +48,7 @@ public class Word extends JPanel{
 		btn_title.setBorderPainted(false);
 		btn_title.setContentAreaFilled(false);
 		btn_title.setFocusPainted(false);
+		add(btn_title);
 		
         // home button
 		btn_main = new JButton("돌아가기");
@@ -111,8 +112,9 @@ public class Word extends JPanel{
 						label[2].setText("");
 					
 					if (label[1].getText().equals("")) {
-						System.out.println("끝! " + score + "/" + words.length);
+						//System.out.println("끝! " + score + "/" + words.length);
 						iw.setScore(score);
+						btn_main.doClick();
 					}
 				}
 			}
