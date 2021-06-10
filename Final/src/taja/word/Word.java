@@ -8,18 +8,29 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import IO.IOWord;
+
 public class Word extends JPanel{
 	private StartFrame f;
 	private JPanel main, title, user, professor;
 	private JButton btn_main, btn_title, btn_bg;
 	private JTextField tf;
-	private ArrayList<String> list = new ArrayList<>(Arrays.asList("ComponentListener", "EventListener", "word", "oop", "time", "hi"));
-	private JLabel[] label = new JLabel[4];
-	//private JLabel[] label = new JLabel[3];
+	private IOWord iw;
+	private String[] words;
+	private int count = 2, score = 0;
+	private JLabel[] label = new JLabel[3];
 	String tmp = "";
-	
 	private Font font;
 	private Border border;
+	
+	public void setFocus() {
+		tf.requestFocus();
+		words = iw.getWords();
+		count = 2; score = 0;
+		label[0].setText("");
+		label[1].setText(words[0]);
+		label[2].setText(words[1]);
+	}
 	
 	public Word(StartFrame f) {
 		// panel settings
@@ -37,7 +48,6 @@ public class Word extends JPanel{
 		btn_title.setBorderPainted(false);
 		btn_title.setContentAreaFilled(false);
 		btn_title.setFocusPainted(false);
-		add(btn_title);
 		
         // home button
 		btn_main = new JButton("돌아가기");
@@ -49,26 +59,34 @@ public class Word extends JPanel{
 			}
 		});
 		
-		// word label
-		for (int i = 0; i < label.length; i++) {
-			if (i == 0) {
-				label[0] = new JLabel("");
-			}else {
-				label[i] = new JLabel(list.get(0));
-				list.remove(0);
-			}
-			label[i].setFont(font);
-			label[i].setHorizontalAlignment(JLabel.CENTER);
-			label[i].setBounds(150 * (i+1), 200, 100, 50);
-			add(label[i], new Integer(1));
-		}
+		iw = new IOWord();
+		words = iw.getWords();
+		System.out.println(iw.getName());
+		
+		label[0] = new JLabel("");
+		label[0].setFont(font);
+		label[0].setHorizontalAlignment(JLabel.CENTER);
+		label[0].setBounds(20, 200, 140, 50);
+		add(label[0]);
+		
+		label[1] = new JLabel(words[0]);
+		label[1].setFont(font);
+		label[1].setHorizontalAlignment(JLabel.CENTER);
+		label[1].setBounds(160, 200, 260, 50);
 		label[1].setBorder(border);
+		add(label[1]);
+		
+		label[2] = new JLabel(words[1]);
+		label[2].setFont(font);
+		label[2].setHorizontalAlignment(JLabel.CENTER);
+		label[2].setBounds(420, 200, 140, 50);
+		add(label[2]);
 		
 		// input field
 		tf = f.getWord();
 		tf.setBounds(10, 300, 400, 30);
 		tf.setFocusTraversalKeysEnabled(false);
-		add(tf, 1);
+		add(tf);
 		tf.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {}
@@ -76,15 +94,25 @@ public class Word extends JPanel{
 				if (e.getKeyChar() == ' ' || e.getKeyChar() == '\n') {
 					tmp = tf.getText();
 					tf.setText("");
-					
-					for(int i = 0; i < label.length - 1; i++) 
-						label[i].setText(label[i+1].getText());
-					
-					if (list.isEmpty()) {
-						label[3].setText("");
+
+					if(tmp.equals(label[1].getText())) {
+						score++;
+						System.out.println("T");
+						// 정답 리액션
 					}else {
-						label[3].setText(list.get(0));
-						list.remove(0);
+						// 오답 리액션
+					}
+					
+					label[0].setText(label[1].getText());
+					label[1].setText(label[2].getText());
+					if (count < words.length)
+						label[2].setText(words[count++]);
+					else
+						label[2].setText("");
+					
+					if (label[1].getText().equals("")) {
+						System.out.println("끝! " + score + "/" + words.length);
+						iw.setScore(score);
 					}
 				}
 			}
