@@ -6,7 +6,9 @@ import java.util.*;
 public class IOWord {
 	String fname;
 	FileReader fr;
+	FileWriter fw;
 	BufferedReader br;
+	BufferedWriter bw;
 	String s1 = "", s2 = "";
 	StringTokenizer parse;
 	int length;
@@ -50,12 +52,11 @@ public class IOWord {
 		return words;
 	}
 	
-	public String getName() {
+	public void setScore(int score) {
 		try {
-			FileReader fr = new FileReader("./text/WordScores.txt");
-			BufferedReader br = new BufferedReader(fr);
+			fr = new FileReader("./text/WordScores.txt");
+			br = new BufferedReader(fr);
 			
-			name = br.readLine();
 			s2 = "";
 			while((s1 = br.readLine()) != null) {
 				s2 += s1 + "\t";
@@ -74,17 +75,12 @@ public class IOWord {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return name;
-	}
-	
-	public void setScore(int score) {
+		
+		
 		try {
-			FileWriter fw = new FileWriter(new File("./text/WordScores.txt"));
-			BufferedWriter bw = new BufferedWriter(fw);
+			fw = new FileWriter(new File("./text/WordScores.txt"));
+			bw = new BufferedWriter(fw);
 			
-			bw.write(name);
-			bw.newLine();
 			for (int i = 0; i < length - 1; i++) {
 				bw.write("" + scores[i]);
 				bw.newLine();

@@ -53,7 +53,7 @@ public class Main extends JPanel implements ActionListener{
 		btn_word = new JButton();
 		btn_word.setBorderPainted(false);
 		btn_word.setContentAreaFilled(false);
-		ImageIcon btn_wd = new ImageIcon("Final/images/btn_word.png");
+		ImageIcon btn_wd = new ImageIcon("./images/btn_word.png");
 		btn_word.setIcon(btn_wd);
 		menupanel.add(btn_word);
 		btn_word.addActionListener(this);
@@ -77,7 +77,7 @@ public class Main extends JPanel implements ActionListener{
 		btn_setting = new JButton();
 		btn_setting.setBorderPainted(false);
 		btn_setting.setContentAreaFilled(false);		
-		ImageIcon btn_settings = new ImageIcon("Final/images/btn_settings.png");
+		ImageIcon btn_settings = new ImageIcon("./images/btn_settings.png");
 		btn_setting.setIcon(btn_settings);
 		menupanel.add(btn_setting);
 		btn_setting.addActionListener(this);
@@ -96,7 +96,7 @@ public class Main extends JPanel implements ActionListener{
 		start = new JButton();
 		start.setBorderPainted(false);
 		start.setContentAreaFilled(false);		
-		ImageIcon btn_start = new ImageIcon("Final/images/btn_start.png");
+		ImageIcon btn_start = new ImageIcon("./images/btn_start.png");
 		start.setIcon(btn_start);
 		start.addActionListener(this);
 		

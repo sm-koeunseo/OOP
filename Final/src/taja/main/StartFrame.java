@@ -25,7 +25,7 @@ public class StartFrame extends JFrame {
         getContentPane().add("Word", word);
 //        getContentPane().add("Line", new Line(this));
 //        getContentPane().add("Game", new Game(this));
-//        getContentPane().add("Setting", new Setting(this));
+        getContentPane().add("Setting", new Setting(this));
 
 		//setUndecorated(true);
         Dimension frameSize = getSize();	//프레임의 크기 구하기
