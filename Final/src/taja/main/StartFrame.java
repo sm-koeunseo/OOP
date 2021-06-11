@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
-	private TextField tf_alphabet = new TextField();
+	private JTextField tf_alphabet = new JTextField();
 	private JTextField tf_word = new JTextField();
 	private TextField tf_line = new TextField();
 	private TextField tf_game = new TextField();
@@ -69,7 +69,7 @@ public class StartFrame extends JFrame {
 //    		tf_setting.requestFocus();
 //    }
 	
-	public TextField getAlphabet() {
+	public JTextField getAlphabet() {
 		return tf_alphabet;
 	}
 	public JTextField getWord() {
