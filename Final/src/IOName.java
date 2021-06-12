@@ -32,7 +32,6 @@ public class IOName {
 	}
 	
 	public String setName(String name) {
-		System.out.println(name);
 		try {
 			fw = new FileWriter(new File("Final/text/name.txt"));
 			bw = new BufferedWriter(fw);

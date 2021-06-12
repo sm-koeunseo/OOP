@@ -22,6 +22,8 @@ public class Setting extends JPanel implements ActionListener{
 	String wordScore1[][], wordScore2[][];
 	JTable table1, table2;
 	JScrollPane sp1, sp2;
+	JRadioButton check1, check2, check3, check4;
+	ButtonGroup cbg;
 	
 	public void setFocus() {
 		sp1.hide();
@@ -83,6 +85,7 @@ public class Setting extends JPanel implements ActionListener{
  		in = new IOName();
  		userName = in.getName();
  		userNameL = new JLabel(userName);
+ 		userNameL.setHorizontalAlignment(JLabel.CENTER);
  		userNameL.setFont(font);
  		userNameL.setBorder(border);
  		userNameL.setBounds(220, 100, 180, 50);
@@ -100,6 +103,41 @@ public class Setting extends JPanel implements ActionListener{
  		btn_change.setBounds(220, 160, 180, 50);
  		add(btn_change);
  		btn_change.addActionListener(this);
+ 		
+ 		// radio
+ 		check1 = new JRadioButton("단어연습", true);
+		check1.setFont(font);
+		check1.setBackground(Color.white);
+		check1.setBounds(500, 100, 100, 50);
+		check1.addActionListener(this);
+		add(check1);
+		
+		check2 = new JRadioButton("게임하기", false);
+		check2.setFont(font);
+		check2.setBackground(Color.white);
+		check2.setBounds(600, 100, 100, 50);
+		check2.addActionListener(this);
+		add(check2);
+		
+		check3 = new JRadioButton("게임하기", false);
+		check3.setFont(font);
+		check3.setBackground(Color.white);
+		check3.setBounds(500, 200, 100, 50);
+		check3.addActionListener(this);
+		add(check3);
+		
+		check4 = new JRadioButton("게임하기", false);
+		check4.setFont(font);
+		check4.setBackground(Color.white);
+		check4.setBounds(600, 200, 100, 50);
+		check4.addActionListener(this);
+		add(check4);
+		
+		cbg = new ButtonGroup();
+		cbg.add(check1);
+		cbg.add(check2);
+		cbg.add(check3);
+		cbg.add(check4);
  		
  		// user picture pannel
  		userP = new JPanel();
@@ -144,24 +182,30 @@ public class Setting extends JPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(change) {
-			if (userNameT.getText().equals("")) {
-				JOptionPane.showMessageDialog(this, "이름을 입력해주세요!", "Not Access", JOptionPane.ERROR_MESSAGE);
-			}else if(userNameT.getText().equals(userName)){
-				JOptionPane.showMessageDialog(this, "변경하려는 이름을 입력해주세요!", "Not Access", JOptionPane.ERROR_MESSAGE);
+		if (e.getSource() == check1) {
+			
+		}else if (e.getSource() == check2) {
+			
+		}else if (e.getSource() == btn_change) {
+			if(change) {
+				if (userNameT.getText().equals("")) {
+					JOptionPane.showMessageDialog(this, "이름을 입력해주세요!", "Not Access", JOptionPane.ERROR_MESSAGE);
+				}else if(userNameT.getText().equals(userName)){
+					JOptionPane.showMessageDialog(this, "변경하려는 이름을 입력해주세요!", "Not Access", JOptionPane.ERROR_MESSAGE);
+				}else {
+					userName = in.setName(userNameT.getText());
+					userNameL.setText(userName);
+					userNameT.setText(userName);
+					userNameT.setVisible(false);
+					btn_change.setText("이름바꾸기");
+					JOptionPane.showMessageDialog(this, "변경되었습니다!", "Access", JOptionPane.INFORMATION_MESSAGE);
+					change = false;
+				}
 			}else {
-				userName = in.setName(userNameT.getText());
-				userNameL.setText(userName);
-				userNameT.setText(userName);
-				userNameT.setVisible(false);
-				btn_change.setText("이름바꾸기");
-				JOptionPane.showMessageDialog(this, "변경되었습니다!", "Access", JOptionPane.INFORMATION_MESSAGE);
-				change = false;
+				userNameT.setVisible(true);
+				change = true;
+				btn_change.setText("저장하기");
 			}
-		}else {
-			userNameT.setVisible(true);
-			change = true;
-			btn_change.setText("저장하기");
 		}
 	}
 }
