@@ -18,7 +18,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
  
-public class Game extends Frame {
+public class Game extends Frame implements ActionListener {
 	StartFrame f;
     
     private int FRAME_WIDTH = 800;
@@ -44,10 +44,10 @@ public class Game extends Frame {
     ThreadGroup virusGrp = new ThreadGroup("virus"); // 바이러스 쓰레드들의 그룹
      
     String[][] data = { 
-            { "java", "swing", "import", "println", "awt", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event","TextField"},
-            { "java", "swing", "import", "println", "awt", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event","TextField"},
-            { "java", "util", "IO", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color","TextField"},
-            { "java", "util", "IO", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color","TextField","Canvas"}
+            { "java", "swing", "import", "println", "Vector", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event"},
+            { "java", "swing", "import", "println", "Vector", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event"},
+            { "javax", "util", "new", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color"},
+            { "javax", "util", "new", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color" }
         };
   
     final Level[] LEVEL = { new Level(500, 2000, 1000, data[0]), 
@@ -63,13 +63,16 @@ public class Game extends Frame {
     Panel panel_score = new Panel();
     Panel panel_life = new Panel();
     
-    JButton btn_game = new JButton();
-    
+    //JButton btn_game = new JButton();
+
     //Panel user  = new Panel();
     //Panel professor = new Panel();
     
+    JButton btn_home = new JButton(new ImageIcon("Final/images/home.png"));
     JButton user = new JButton();
     JButton professor = new JButton();
+  
+    
 
 
    
@@ -86,14 +89,16 @@ public class Game extends Frame {
     Game(StartFrame f, Point p) {
         this("Game");
         this.f = f;
+        
+        
         setLocation(p);
     }
      
     Game(String title) {
         super(title);
         
-        btn_game.setBorderPainted(false);
-        btn_game.setContentAreaFilled(false);
+        //btn_game.setBorderPainted(false);
+        //btn_game.setContentAreaFilled(false);
  
         
         lbLevel.setFont(new Font("ELAND 나이스", Font.BOLD, 20));
@@ -121,20 +126,20 @@ public class Game extends Frame {
         panel_life.setBounds(392, 40, 170, 40);
         //btn_game.setBackground(Color.white);
         //btn_game.add(label_game);
-        btn_game.setBounds(580, 90, 180, 50);
-        btn_game.setBorderPainted(false);
-        btn_game.setContentAreaFilled(false);
-        ImageIcon btn_g = new ImageIcon("Final/images/btn_game.png");
-        ImageIcon user_smile = new ImageIcon("Final/images/user_smile.png");
-        //ImageIcon user_sad = new ImageIcon("Final/images/user_sad.png");
-        ImageIcon professor_smile = new ImageIcon("Final/images/professor_smile.png");
-        ImageIcon professor_sad = new ImageIcon("Final/images/professor_sad.png");
+//        btn_game.setBounds(580, 35, 170, 50);
+//        btn_game.setBorderPainted(false);
+//        btn_game.setContentAreaFilled(false);
+        //ImageIcon btn_g = new ImageIcon("Final/images/game_btn_game.png");
+        ImageIcon user_smile = new ImageIcon("Final/images/game_student.png");
+        //ImageIcon user_sad = new ImageIcon("Final/images/game_cry.png");
+        ImageIcon professor_smile = new ImageIcon("Final/images/game_smile.png");
+        //ImageIcon professor_sad = new ImageIcon("Final/images/game_angry.png");
         
         
-        btn_game.setIcon(btn_g);
-        btn_game.setBorderPainted(false);
-        btn_game.setContentAreaFilled(false);
-        btn_game.setFocusPainted(false);
+//        btn_game.setIcon(btn_g);
+//        btn_game.setBorderPainted(false);
+//        btn_game.setContentAreaFilled(false);
+//        btn_game.setFocusPainted(false);
       
         
         user.setBackground(Color.white);
@@ -152,10 +157,29 @@ public class Game extends Frame {
         professor.setContentAreaFilled(false);
         professor.setFocusPainted(false);
         
+
+        //btn_home = new JButton("홈");
+        
+		add(btn_home);
+		btn_home.setBounds(580, 90, 180, 50);
+		
+		btn_home.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+					System.exit(0);
+				}
+		});
+			
+//		btn_home.addWindowListener(new WindowAdapter() {
+//			   public void windowClosing(WindowEvent e) {  
+//	                dispose();  
+//		}});
+//		
+	        
         add(tf);
         tf.setBounds(20,550,540,20);
-      
-        add(btn_game);
+        
+        add(btn_home);
+       //add(btn_game);
         add(user);
         add(professor);
         add(panel_level);
@@ -184,6 +208,8 @@ public class Game extends Frame {
         fm = getFontMetrics(getFont());
     }
      
+
+    
     public void repaint() {
         super.repaint();
         screen.repaint();
@@ -345,8 +371,6 @@ public class Game extends Frame {
             this.word = word;
             this.step = step;
             this.isVirus = isVirus;
-     
-       
                
      
             int strWidth = fm.stringWidth(word);
@@ -460,7 +484,7 @@ public class Game extends Frame {
                    repaint();
                     user.setBackground(Color.white);
                     user.setBounds(580, 150, 180, 190);
-                    ImageIcon user_sad = new ImageIcon("Final/images/user_smile.png");
+                    ImageIcon user_sad = new ImageIcon("Final/images/game_student.png");
 
                     user.setIcon(user_sad);
                     user.setBorderPainted(false);
@@ -469,7 +493,7 @@ public class Game extends Frame {
                     repaint();
                     professor.setBackground(Color.white);
                     professor.setBounds(580, 350, 180, 190);
-                    ImageIcon professor_sad = new ImageIcon("Final/images/professor_smile.png");
+                    ImageIcon professor_sad = new ImageIcon("Final/images/game_smile.png");
 
                     professor.setIcon(professor_sad);
                     professor.setBorderPainted(false);
@@ -499,7 +523,7 @@ public class Game extends Frame {
                    repaint();
                     user.setBackground(Color.white);
                     user.setBounds(580, 150, 180, 190);
-                    ImageIcon user_sad = new ImageIcon("Final/images/user_sad.png");
+                    ImageIcon user_sad = new ImageIcon("Final/images/game_cry.png");
 
                     user.setIcon(user_sad);
                     user.setBorderPainted(false);
@@ -508,7 +532,7 @@ public class Game extends Frame {
                  
                     professor.setBackground(Color.white);
                     professor.setBounds(580, 350, 180, 190);
-                    ImageIcon professor_sad = new ImageIcon("Final/images/professor_sad.png");
+                    ImageIcon professor_sad = new ImageIcon("Final/images/game_angry.png");
 
                     professor.setIcon(professor_sad);
                     professor.setBorderPainted(false);
@@ -522,15 +546,17 @@ public class Game extends Frame {
         }
      
         public void windowClosing(WindowEvent e) {
-//            f.setVisible(true);
-//            System.exit(0);
-        	//System.out.println("test!");
         	this.windowClosed(e);
             e.getWindow().setVisible(false);
             e.getWindow().dispose();
         	f.setVisible(true);
         }
-    } 
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	} 
     
     
     
