@@ -18,8 +18,8 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
  
-public class Game extends Frame implements ActionListener {
-	StartFrame f;
+public class Game extends Frame {
+   StartFrame f;
     
     private int FRAME_WIDTH = 800;
     private int FRAME_HEIGHT = 600;
@@ -63,16 +63,13 @@ public class Game extends Frame implements ActionListener {
     Panel panel_score = new Panel();
     Panel panel_life = new Panel();
     
-    //JButton btn_game = new JButton();
-
+    JButton btn_game = new JButton();
+    
     //Panel user  = new Panel();
     //Panel professor = new Panel();
     
-    JButton btn_home = new JButton(new ImageIcon("Final/images/home.png"));
     JButton user = new JButton();
     JButton professor = new JButton();
-  
-    
 
 
    
@@ -89,16 +86,14 @@ public class Game extends Frame implements ActionListener {
     Game(StartFrame f, Point p) {
         this("Game");
         this.f = f;
-        
-        
         setLocation(p);
     }
      
     Game(String title) {
         super(title);
         
-        //btn_game.setBorderPainted(false);
-        //btn_game.setContentAreaFilled(false);
+        btn_game.setBorderPainted(false);
+        btn_game.setContentAreaFilled(false);
  
         
         lbLevel.setFont(new Font("ELAND 나이스", Font.BOLD, 20));
@@ -126,20 +121,20 @@ public class Game extends Frame implements ActionListener {
         panel_life.setBounds(392, 40, 170, 40);
         //btn_game.setBackground(Color.white);
         //btn_game.add(label_game);
-//        btn_game.setBounds(580, 35, 170, 50);
-//        btn_game.setBorderPainted(false);
-//        btn_game.setContentAreaFilled(false);
-        //ImageIcon btn_g = new ImageIcon("Final/images/game_btn_game.png");
+        btn_game.setBounds(580, 90, 180, 50);
+        btn_game.setBorderPainted(false);
+        btn_game.setContentAreaFilled(false);
+        ImageIcon btn_g = new ImageIcon("Final/images/btn_game.png");
         ImageIcon user_smile = new ImageIcon("Final/images/game_student.png");
-        //ImageIcon user_sad = new ImageIcon("Final/images/game_cry.png");
+        ImageIcon user_sad = new ImageIcon("Final/images/game_cry.png");
         ImageIcon professor_smile = new ImageIcon("Final/images/game_smile.png");
-        //ImageIcon professor_sad = new ImageIcon("Final/images/game_angry.png");
+        ImageIcon professor_sad = new ImageIcon("Final/images/game_angry.png");
         
         
-//        btn_game.setIcon(btn_g);
-//        btn_game.setBorderPainted(false);
-//        btn_game.setContentAreaFilled(false);
-//        btn_game.setFocusPainted(false);
+        btn_game.setIcon(btn_g);
+        btn_game.setBorderPainted(false);
+        btn_game.setContentAreaFilled(false);
+        btn_game.setFocusPainted(false);
       
         
         user.setBackground(Color.white);
@@ -157,29 +152,10 @@ public class Game extends Frame implements ActionListener {
         professor.setContentAreaFilled(false);
         professor.setFocusPainted(false);
         
-
-        //btn_home = new JButton("홈");
-        
-		add(btn_home);
-		btn_home.setBounds(580, 90, 180, 50);
-		
-		btn_home.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-					System.exit(0);
-				}
-		});
-			
-//		btn_home.addWindowListener(new WindowAdapter() {
-//			   public void windowClosing(WindowEvent e) {  
-//	                dispose();  
-//		}});
-//		
-	        
         add(tf);
         tf.setBounds(20,550,540,20);
-        
-        add(btn_home);
-       //add(btn_game);
+      
+        add(btn_game);
         add(user);
         add(professor);
         add(panel_level);
@@ -198,7 +174,7 @@ public class Game extends Frame implements ActionListener {
      
         setBounds(500, 200, FRAME_WIDTH, FRAME_HEIGHT); 
         setResizable(false); // 크기조절 불가능
-		
+      
         setVisible(true); // 프레임을 보여줌
      
         SCREEN_WIDTH = screen.getWidth();
@@ -208,8 +184,6 @@ public class Game extends Frame implements ActionListener {
         fm = getFontMetrics(getFont());
     }
      
-
-    
     public void repaint() {
         super.repaint();
         screen.repaint();
@@ -315,11 +289,11 @@ public class Game extends Frame implements ActionListener {
                         isPlaying = false;
                         showTitle("Game Over", 0);
                         try {
-							Thread.sleep(3000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+                     Thread.sleep(3000);
+                  } catch (InterruptedException e) {
+                     // TODO Auto-generated catch block
+                     e.printStackTrace();
+                  }
                         f.setVisible(true);
                         setVisible(false);
      
@@ -371,6 +345,8 @@ public class Game extends Frame implements ActionListener {
             this.word = word;
             this.step = step;
             this.isVirus = isVirus;
+     
+       
                
      
             int strWidth = fm.stringWidth(word);
@@ -546,17 +522,15 @@ public class Game extends Frame implements ActionListener {
         }
      
         public void windowClosing(WindowEvent e) {
-        	this.windowClosed(e);
+//            f.setVisible(true);
+//            System.exit(0);
+           //System.out.println("test!");
+           this.windowClosed(e);
             e.getWindow().setVisible(false);
             e.getWindow().dispose();
-        	f.setVisible(true);
+           f.setVisible(true);
         }
-    }
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-	} 
+    } 
     
     
     
