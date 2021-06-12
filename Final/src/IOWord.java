@@ -17,8 +17,9 @@ public class IOWord {
 	BufferedReader br;
 	BufferedWriter bw;
 	StringTokenizer parse;
-	String s1 = "", s2 = "", time;
-	int length;
+	String s1 = "", s2 = "", time, tmp;
+	int length, cnt;
+	String[][] tmpScores1, tmpScores2;
 	String[] words, scores, times;
 	Random random = new Random();
 	Date date;
@@ -59,7 +60,7 @@ public class IOWord {
 		return words;
 	}
 	
-	public void setScore(int score) {
+	private void getScore() {
 		try {
 			fr = new FileReader("Final/text/WordScores.txt");
 			br = new BufferedReader(fr);
@@ -85,6 +86,10 @@ public class IOWord {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setScore(int score) {
+		getScore();
 		
 		try {
 			fw = new FileWriter(new File("Final/text/WordScores.txt"));
@@ -105,5 +110,55 @@ public class IOWord {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String[][] getScore1(){
+		getScore();
+		
+		cnt = 0;
+		tmpScores1 = new String[length][3];
+		for (int i = length - 1; i > -1; i--) {
+			tmpScores1[cnt][2] = scores[i];
+			tmpScores1[cnt][1] = times[i];
+			tmpScores1[cnt][0] = "" + ++cnt;
+		}
+		return tmpScores1;
+	}
+	
+	public String[][] getScore2(){
+		cnt = 0;
+		tmpScores2 = new String[length][3];
+		for (int i = length - 1; i > -1; i--) {
+			tmpScores2[cnt][2] = scores[i];
+			tmpScores2[cnt][1] = times[i];
+			tmpScores2[cnt][0] = "" + ++cnt;
+		}
+		
+		for (int i = length - 1; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (tmpScores2[j][2].equals(tmpScores2[j + 1][2])) {
+					if(tmpScores2[j][1].compareTo(tmpScores2[j + 1][1]) > 0){
+						tmp = tmpScores2[j][2];
+						tmpScores2[j][2] = tmpScores2[j + 1][2];
+						tmpScores2[j + 1][2] = tmp;
+						
+						tmp = tmpScores2[j][1];
+						tmpScores2[j][1] = tmpScores2[j + 1][1];
+						tmpScores2[j + 1][1] = tmp;
+						
+					}
+				}else if (Integer.parseInt(tmpScores2[j][2]) < Integer.parseInt(tmpScores2[j + 1][2])) {
+					tmp = tmpScores2[j][2];
+					tmpScores2[j][2] = tmpScores2[j + 1][2];
+					tmpScores2[j + 1][2] = tmp;
+					
+					tmp = tmpScores2[j][1];
+					tmpScores2[j][1] = tmpScores2[j + 1][1];
+					tmpScores2[j + 1][1] = tmp;
+				}
+			}
+		}
+		
+		return tmpScores2;
 	}
 }
