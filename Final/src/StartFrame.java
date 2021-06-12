@@ -1,15 +1,14 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
 
 public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
-	private JTextField tf_alphabet = new JTextField();
-	private JTextField tf_word = new JTextField();
-	private TextField tf_code = new TextField();
-	private TextField tf_game = new TextField();
-	private TextField tf_setting = new TextField();
 	Alphabet alph;
     Word word;
+    Dimension frameSize, screenSize;
 	
 	public StartFrame() {
 		setSize(800, 600);
@@ -26,8 +25,8 @@ public class StartFrame extends JFrame {
         getContentPane().add("Setting", new Setting(this));
 
 		//setUndecorated(true);
-        Dimension frameSize = getSize();	//프레임의 크기 구하기
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();	//모니터 화면의 크기 구하기
+        frameSize = getSize();	//프레임의 크기 구하기
+		screenSize = Toolkit.getDefaultToolkit().getScreenSize();	//모니터 화면의 크기 구하기
 		setLocation((screenSize.width - frameSize.width)/2, (screenSize.height - frameSize.height)/2);
 		//모니터가로 - 프레임 가로 / 2, 모니터세로 - 프레임 세로 / 2
 		//setUndecorated(true);
@@ -40,23 +39,14 @@ public class StartFrame extends JFrame {
     		alph.setFocus();
     	else if (name.equals("Word"))
     		word.setFocus();
-    	else if (name.equals("Code"))
-    		tf_code.requestFocus();
-    	else if (name.equals("Game"))
-    		tf_game.requestFocus();
-    	else if (name.equals("Setting"))
-    		tf_setting.requestFocus();
+    	else if (name.equals("Code")) {}
+    	else if (name.equals("Game")) {
+    	    this.setVisible(false);
+    		Game game = new Game(this, getLocation()); 
+    	    game.start();
+    	}
+    	else if (name.equals("Setting")) {}
     }
-	
-	public TextField getCode() {
-		return tf_code;
-	}
-	public TextField getGame() {
-		return tf_game;
-	}
-	public TextField getSetting() {
-		return tf_setting;
-	}
 
 	public static void main(String[] args) {
 		new StartFrame();
