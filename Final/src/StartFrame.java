@@ -5,7 +5,7 @@ public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
 	private JTextField tf_alphabet = new JTextField();
 	private JTextField tf_word = new JTextField();
-	private TextField tf_line = new TextField();
+	private TextField tf_code = new TextField();
 	private TextField tf_game = new TextField();
 	private TextField tf_setting = new TextField();
     Word word;
@@ -19,7 +19,7 @@ public class StartFrame extends JFrame {
         getContentPane().add("Main", new Main(this));
         getContentPane().add("Alphabet", new Alphabet(this));
         getContentPane().add("Word", word);
-//        getContentPane().add("Line", new Line(this));
+        getContentPane().add("Code", new Code(this));
 //        getContentPane().add("Game", new Game(this));
         getContentPane().add("Setting", new Setting(this));
 
@@ -37,8 +37,8 @@ public class StartFrame extends JFrame {
     		tf_alphabet.requestFocus();
     	else if (name.equals("Word"))
     		word.setFocus();
-    	else if (name.equals("Line"))
-    		tf_line.requestFocus();
+    	else if (name.equals("Code"))
+    		tf_code.requestFocus();
     	else if (name.equals("Game"))
     		tf_game.requestFocus();
     	else if (name.equals("Setting"))
@@ -71,8 +71,8 @@ public class StartFrame extends JFrame {
 	public JTextField getWord() {
 		return tf_word;
 	}
-	public TextField getLine() {
-		return tf_line;
+	public TextField getCode() {
+		return tf_code;
 	}
 	public TextField getGame() {
 		return tf_game;

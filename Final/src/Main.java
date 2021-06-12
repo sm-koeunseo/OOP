@@ -6,7 +6,7 @@ public class Main extends JPanel implements ActionListener{
 	private StartFrame f;
 	private Panel titlepanel,menupanel,textpanel,startpanel;
 	private JLabel titlelabel, menulabel, textlabel;
-	private JButton btn_alphabet, btn_word, btn_line, btn_game, btn_setting;
+	private JButton btn_alphabet, btn_word, btn_code, btn_game, btn_setting;
 	private ImageIcon btn_alpha, btn_wd, btn_long, btn_g, btn_settings, btn_start, btn_exit, btn_prof;
 	private JButton start, prof, exit;
 	private JTextField tf_main = new JTextField(300);
@@ -58,13 +58,13 @@ public class Main extends JPanel implements ActionListener{
 		menupanel.add(btn_word);
 		btn_word.addActionListener(this);
 		
-		btn_line = new JButton();
-		btn_line.setBorderPainted(false);
-		btn_line.setContentAreaFilled(false);
-		btn_long = new ImageIcon("Final/images/btn_long.png");
-		btn_line.setIcon(btn_long);
-		menupanel.add(btn_line);
-		btn_line.addActionListener(this);
+		btn_code = new JButton();
+		btn_code.setBorderPainted(false);
+		btn_code.setContentAreaFilled(false);
+		ImageIcon btn_long = new ImageIcon("Final/images/btn_long.png");
+		btn_code.setIcon(btn_long);
+		menupanel.add(btn_code);
+		btn_code.addActionListener(this);
 		
 		btn_game = new JButton();
 		btn_game.setBorderPainted(false);
@@ -129,8 +129,8 @@ public class Main extends JPanel implements ActionListener{
 		} else if(e.getSource() == btn_word) {
 			tmpPanel = "Word";
 			tf_main.setText("    단어연습: 자바 프로그래밍에 필요한 여러 단어들을 학습합니다!");
-		}else if(e.getSource() == btn_line) {
-			tmpPanel = "Line";
+		}else if(e.getSource() == btn_code) {
+			tmpPanel = "Code";
 			tf_main.setText("    긴글연습: 실제로 프로그래밍을 하는 것처럼 줄글로 마스터!");
 		}else if(e.getSource() == btn_game) {
 			tmpPanel = "Game";

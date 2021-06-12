@@ -17,7 +17,7 @@ public class IOName {
 	
 	public String getName() {
 		try {
-			fr = new FileReader("./text/name.txt");
+			fr = new FileReader("Final/text/name.txt");
 			br = new BufferedReader(fr);
 			
 			name = br.readLine();
@@ -36,7 +36,7 @@ public class IOName {
 	public String setName(String name) {
 		System.out.println(name);
 		try {
-			fw = new FileWriter(new File("./text/name.txt"));
+			fw = new FileWriter(new File("Final/text/name.txt"));
 			bw = new BufferedWriter(fw);
 			
 			bw.write(name);
