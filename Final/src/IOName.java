@@ -1,8 +1,10 @@
-
-
-import java.io.*;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class IOName {
 	FileReader fr;
@@ -10,10 +12,6 @@ public class IOName {
 	BufferedReader br;
 	BufferedWriter bw;
 	String name;
-
-	public IOName() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public String getName() {
 		try {
@@ -51,10 +49,4 @@ public class IOName {
 		
 		return getName();
 	}
-	
-//	public static void main(String[] args) {
-//		IOName in = new IOName();
-//		System.out.println(in.getName());
-//	}
-
 }

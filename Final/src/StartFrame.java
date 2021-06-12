@@ -8,6 +8,7 @@ public class StartFrame extends JFrame {
 	private CardLayout cards = new CardLayout();
 	Alphabet alph;
     Word word;
+    Setting setting;
     Dimension frameSize, screenSize;
 	
 	public StartFrame() {
@@ -17,12 +18,13 @@ public class StartFrame extends JFrame {
         
         alph = new Alphabet(this);
         word = new Word(this);
+        setting = new Setting(this);
         getContentPane().add("Main", new Main(this));
         getContentPane().add("Alphabet", alph);
         getContentPane().add("Word", word);
         getContentPane().add("Code", new Code(this));
 //        getContentPane().add("Game", new Game(this));
-        getContentPane().add("Setting", new Setting(this));
+        getContentPane().add("Setting", setting);
 
 		//setUndecorated(true);
         frameSize = getSize();	//프레임의 크기 구하기
@@ -45,7 +47,8 @@ public class StartFrame extends JFrame {
     		Game game = new Game(this, getLocation()); 
     	    game.start();
     	}
-    	else if (name.equals("Setting")) {}
+    	else if (name.equals("Setting"))
+    		setting.setFocus();
     }
 
 	public static void main(String[] args) {

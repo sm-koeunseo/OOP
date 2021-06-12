@@ -4,20 +4,41 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.JOptionPane;
 
 
 public class Setting extends JPanel implements ActionListener{
 	private StartFrame f;
-	private JPanel userP, userI, score;
+	private JPanel userP, userI, score1, score2;
 	private JButton btn_main, btn_title, btn_change;
 	private TextField userNameT;
 	private String userName;
-	private JLabel userNameL;
+	private JLabel userNameL, label1, label2;
 	private IOName in;
+	private IOWord io;
 	private Font font;
 	private Border border;
 	private boolean change = false;
+	String columnName[] = {"번호", "날짜", "점수"};
+	String wordScore1[][], wordScore2[][];
+	JTable table1, table2;
+	JScrollPane sp1, sp2;
+	
+	public void setFocus() {
+		sp1.hide();
+		sp2.hide();
+		wordScore1 = io.getScore1();
+		wordScore2 = io.getScore2();
+		wordScore1 = io.getScore1();
+		wordScore2 = io.getScore2();
+		table1 = new JTable(wordScore1, columnName);
+		table2 = new JTable(wordScore2, columnName);
+		sp1 = new JScrollPane(table1);
+		sp2 = new JScrollPane(table2);
+		sp1.setPreferredSize(new Dimension(350, 210));
+		sp2.setPreferredSize(new Dimension(350, 210));
+		score1.add(sp1);
+		score2.add(sp2);
+	}
 
 	public Setting(StartFrame f) {
 		// panel settings
@@ -89,11 +110,34 @@ public class Setting extends JPanel implements ActionListener{
 		userI.setBounds(220, 90, 545, 190);
 		add(userI);
  		
- 		// user info pannel
-		score = new JPanel();
-		score.setBackground(Color.white);
-		score.setBounds(20, 300, 745, 245);
-		add(score);
+ 		// score pannel
+		score1 = new JPanel();
+		score1.setBackground(Color.white);
+		score1.setBounds(20, 300, 360, 245);
+		add(score1);
+		score2 = new JPanel();
+		score2.setBackground(Color.white);
+		score2.setBounds(405, 300, 360, 245);
+		add(score2);
+		
+		label1 = new JLabel("최신순");
+		label1.setFont(font);
+		score1.add(label1);
+		label2 = new JLabel("득점순");
+		label2.setFont(font);
+		score2.add(label2);
+		
+		io = new IOWord();
+		wordScore1 = io.getScore1();
+		wordScore2 = io.getScore2();
+		table1 = new JTable(wordScore1, columnName);
+		table2 = new JTable(wordScore2, columnName);
+		sp1 = new JScrollPane(table1);
+		sp2 = new JScrollPane(table2);
+		sp1.setPreferredSize(new Dimension(350, 210));
+		sp2.setPreferredSize(new Dimension(350, 210));
+		score1.add(sp1);
+		score2.add(sp2);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

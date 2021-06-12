@@ -23,6 +23,8 @@ public class Word extends JPanel{
 	private Border border;
 	
 	public void setFocus() {
+		userInput.setText("");
+		tf.setText("");
 		tf.requestFocus();
 		words = iw.getWords();
 		count = 2; score = 0;
@@ -197,7 +199,7 @@ public class Word extends JPanel{
 					userInput.setText("");
 					tmp = tf.getText();
 					tf.setText("");
-					if(tmp.equals(label[1].getText())) {
+					if(tmp.trim().equals(label[1].getText())) {
 						score++;
 						new Prof(p, ratingG).start();
 					}else {
