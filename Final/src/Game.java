@@ -44,10 +44,10 @@ public class Game extends Frame {
     ThreadGroup virusGrp = new ThreadGroup("virus"); // 바이러스 쓰레드들의 그룹
      
     String[][] data = { 
-            { "java", "swing", "import", "println", "Vector", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event"},
-            { "java", "swing", "import", "println", "Vector", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event"},
-            { "javax", "util", "new", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color"},
-            { "javax", "util", "new", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color" }
+            { "java", "swing", "import", "println", "awt", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event","TextField"},
+            { "java", "swing", "import", "println", "awt", "Thread","GridLayout", "int", "repaint", "boolean", "private", "event","TextField"},
+            { "java", "util", "IO", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color","TextField"},
+            { "java", "util", "IO", "Panel", "Label", "String", "BorderLayout", "float", "this", "true", "North", "color","TextField","Canvas"}
         };
   
     final Level[] LEVEL = { new Level(500, 2000, 1000, data[0]), 
@@ -84,7 +84,7 @@ public class Game extends Frame {
     MyCanvas screen = new MyCanvas();
      
     Game(StartFrame f, Point p) {
-        this("자바 타자 게임: ryj");
+        this("Game");
         this.f = f;
         setLocation(p);
     }
