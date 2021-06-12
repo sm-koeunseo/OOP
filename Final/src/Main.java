@@ -41,71 +41,62 @@ public class Main extends JPanel implements ActionListener{
 		menulabel.setFont(font2);
 		menupanel.add(menulabel);
 		
-		btn_alphabet = new JButton();
+		btn_alphabet = new JButton(new ImageIcon("Final/images/btn_alpha.png"));
 		btn_alphabet.setBorderPainted(false);
 		btn_alphabet.setContentAreaFilled(false);
-		btn_alpha = new ImageIcon("Final/images/btn_alpha.png");
-			
-		btn_alphabet.setIcon(btn_alpha);
+		btn_alphabet.setFocusPainted(false);
 		menupanel.add(btn_alphabet);
 		btn_alphabet.addActionListener(this);
 		
-		btn_word = new JButton();
+		btn_word = new JButton(new ImageIcon("Final/images/btn_word.png"));
 		btn_word.setBorderPainted(false);
 		btn_word.setContentAreaFilled(false);
-		btn_wd = new ImageIcon("Final/images/btn_word.png");
-		btn_word.setIcon(btn_wd);
+		btn_word.setFocusPainted(false);
 		menupanel.add(btn_word);
 		btn_word.addActionListener(this);
 		
-		btn_code = new JButton();
+		btn_code = new JButton(new ImageIcon("Final/images/btn_long.png"));
 		btn_code.setBorderPainted(false);
 		btn_code.setContentAreaFilled(false);
-		ImageIcon btn_long = new ImageIcon("Final/images/btn_long.png");
-		btn_code.setIcon(btn_long);
+		btn_code.setFocusPainted(false);
 		menupanel.add(btn_code);
 		btn_code.addActionListener(this);
 		
-		btn_game = new JButton();
+		btn_game = new JButton(new ImageIcon("Final/images/btn_game.png"));
 		btn_game.setBorderPainted(false);
 		btn_game.setContentAreaFilled(false);
-		btn_g = new ImageIcon("Final/images/btn_game.png");
-		btn_game.setIcon(btn_g);
+		btn_game.setFocusPainted(false);
 		menupanel.add(btn_game);
 		btn_game.addActionListener(this);
 		
-		btn_setting = new JButton();
+		btn_setting = new JButton(new ImageIcon("Final/images/btn_settings.png"));
 		btn_setting.setBorderPainted(false);
-		btn_setting.setContentAreaFilled(false);		
-		btn_settings = new ImageIcon("Final/images/btn_settings.png");
-		btn_setting.setIcon(btn_settings);
+		btn_setting.setContentAreaFilled(false);
+		btn_setting.setFocusPainted(false);
 		menupanel.add(btn_setting);
 		btn_setting.addActionListener(this);
 		
 		textpanel = new Panel();
 		textpanel.setLayout(new BorderLayout());
 		textlabel = new JLabel("    ** 메뉴 설명 **");
-		prof = new JButton();
+		prof = new JButton(new ImageIcon("Final/images/prof.png"));
 		prof.setBorderPainted(false);
-		prof.setContentAreaFilled(false);	
-		btn_prof = new ImageIcon("Final/images/prof.png");
-		prof.setIcon(btn_prof);
+		prof.setContentAreaFilled(false);
+		prof.setFocusPainted(false);
 		prof.addActionListener(this);
 		
 		startpanel = new Panel();
-		start = new JButton();
+		start = new JButton(new ImageIcon("Final/images/btn_start.png"));
 		start.setBorderPainted(false);
-		start.setContentAreaFilled(false);		
-		btn_start = new ImageIcon("Final/images/btn_start.png");
-		start.setIcon(btn_start);
+		start.setContentAreaFilled(false);
+		start.setFocusPainted(false);
 		start.addActionListener(this);
 		startpanel.add(start);
 		
-		exit = new JButton();
+		exit = new JButton(new ImageIcon("Final/images/btn_exit.png"));
 		exit.setBorderPainted(false);
-		exit.setContentAreaFilled(false);		
-		btn_exit = new ImageIcon("Final/images/btn_exit.png");
-		exit.setIcon(btn_exit);
+		exit.setContentAreaFilled(false);
+		exit.setFocusPainted(false);
 		exit.addActionListener(this);
 		startpanel.add(exit);
 		

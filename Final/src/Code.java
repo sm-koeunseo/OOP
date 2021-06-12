@@ -127,7 +127,7 @@ public class Code extends JPanel implements KeyListener {
 		add(UserFour);
 
 		/**** 사용자 입력 필드 ****/
-		tf_userInput = f.getAlphabet();
+		tf_userInput = new JTextField();
 		tf_userInput.setBounds(1000, 800, 5, 5);
 		add(tf_userInput);
 
