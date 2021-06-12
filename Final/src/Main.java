@@ -29,7 +29,7 @@ public class Main extends JPanel implements ActionListener{
 		titlepanel = new Panel();
 		Color color = new Color(239, 239, 143);
         setBackground(color);
-		titlelabel = new JLabel("윤용익 교수님과 함께하는 \"객체 타자연습\"");
+		titlelabel = new JLabel("<html><br/>윤용익 교수님과 함께하는 \"객체 타자연습\"<br/><br/></html>");
 		
 		titlelabel.setFont(font);
 		titlepanel.add(titlelabel);
