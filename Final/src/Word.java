@@ -9,7 +9,7 @@ public class Word extends JPanel{
 	private StartFrame f;
 	private Word p;
 	private JPanel main, title, user, professor;
-	private JButton btn_main, btn_title, btn_prof, key;
+	private JButton btn_main, btn_title, btn_prof, btn_stud, key;
 	private JButton[] circle;
 	private JTextField tf;
 	private IOWord iw;
@@ -21,6 +21,7 @@ public class Word extends JPanel{
 	String tmp = "";
 	private Font font;
 	private Border border;
+	private ImageIcon profG, profB, studG, studB;
 	
 	public void setFocus() {
 		userInput.setText("");
@@ -52,8 +53,11 @@ public class Word extends JPanel{
 		add(btn_title);
 		
         // home button
-		btn_main = new JButton("돌아가기");
-		btn_main.setBounds(700, 10, 100, 20);
+		btn_main = new JButton(new ImageIcon("Final/images/home.png"));
+		btn_main.setBorderPainted(false);
+		btn_main.setContentAreaFilled(false);
+		btn_main.setFocusPainted(false);
+		btn_main.setBounds(700, 10, 60, 60);
 		add(btn_main);
 		btn_main.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,12 +94,24 @@ public class Word extends JPanel{
 		add(ratingB);
 		
 		// btn_prof
-		btn_prof = new JButton(new ImageIcon("Final/images/prof.png"));
+		profG = new ImageIcon("Final/images/game_smile.png");
+		profB = new ImageIcon("Final/images/game_angry.png");
+		btn_prof = new JButton(profG);
 		btn_prof.setBounds(580, 350, 180, 190);
 		btn_prof.setBorderPainted(false);
 		btn_prof.setContentAreaFilled(false);
 		btn_prof.setFocusPainted(false);
 		add(btn_prof);
+		
+		// btn_stud
+		studG = new ImageIcon("Final/images/game_student.png");
+		studB = new ImageIcon("Final/images/game_cry.png");
+		btn_stud = new JButton(studG);
+		btn_stud.setBounds(580, 150, 180, 190);
+		btn_stud.setBorderPainted(false);
+		btn_stud.setContentAreaFilled(false);
+		btn_stud.setFocusPainted(false);
+		add(btn_stud);
 		
 		label[0] = new JLabel("");
 		label[0].setFont(font);
@@ -104,7 +120,7 @@ public class Word extends JPanel{
 		add(label[0]);
 		
 		circle = new JButton[26];
-		int x = 80, y = 345;
+		int x = 80, y = 365;
 		for(int i = 0; i < 26; i++) {
 			circle[i] = new JButton(new ImageIcon("Final/images/circle.png"));
 			circle[i].setBounds(x, y, 10, 10);
@@ -116,10 +132,10 @@ public class Word extends JPanel{
 			
 			if (x == 404) {
 				x = 90;
-				y = 380;
+				y = 400;
 			}else if(x == 378) {
 				x = 100;
-				y = 415;
+				y = 435;
 			}else
 				x += 36;
 		}
@@ -170,7 +186,7 @@ public class Word extends JPanel{
 		
 		// keyboard
 		key = new JButton(new ImageIcon("Final/images/key.png"));
-		key.setBounds(20, 240, 540, 300);
+		key.setBounds(20, 260, 540, 300);
 		key.setBorderPainted(false);
 		key.setContentAreaFilled(false);
 		key.setFocusPainted(false);
@@ -182,7 +198,9 @@ public class Word extends JPanel{
 		userInput.setBounds(120, 230, 340, 50);
 		userInput.setHorizontalAlignment(JLabel.CENTER);
 		userInput.setFont(font);
-		userInput.setBorder(border);
+		//userInput.setBorder(border);
+		userInput.setOpaque(true);
+		userInput.setBackground(new Color(239, 239, 143));
 		add(userInput);
 		
 		// input field
@@ -201,8 +219,12 @@ public class Word extends JPanel{
 					tf.setText("");
 					if(tmp.trim().equals(label[1].getText())) {
 						score++;
+						btn_prof.setIcon(profG);
+						btn_stud.setIcon(studG);
 						new Prof(p, ratingG).start();
 					}else {
+						btn_prof.setIcon(profB);
+						btn_stud.setIcon(studB);
 						new Prof(p, ratingB).start();
 					}
 					

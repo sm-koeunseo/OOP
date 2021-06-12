@@ -51,25 +51,28 @@ public class Setting extends JPanel implements ActionListener{
 		border = BorderFactory.createLineBorder(Color.BLUE, 3);
         
         // title
- 		btn_title = new JButton(new ImageIcon("./images/btn_word.png"));
+ 		btn_title = new JButton(new ImageIcon("Final/images/btn_settings.png"));
  		btn_title.setBounds(280, 10, 220, 60);
  		btn_title.setBorderPainted(false);
  		btn_title.setContentAreaFilled(false);
  		btn_title.setFocusPainted(false);
  		add(btn_title);
  		
-         // home button
- 		btn_main = new JButton("돌아가기");
- 		btn_main.setBounds(700, 10, 100, 20);
- 		add(btn_main);
- 		btn_main.addActionListener(new ActionListener() {
- 			public void actionPerformed(ActionEvent arg0) {
- 				f.changePanel("Main");
- 			}
- 		});
+ 		// home button
+		btn_main = new JButton(new ImageIcon("Final/images/home.png"));
+		btn_main.setBorderPainted(false);
+		btn_main.setContentAreaFilled(false);
+		btn_main.setFocusPainted(false);
+		btn_main.setBounds(700, 10, 60, 60);
+		add(btn_main);
+		btn_main.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				f.changePanel("Main");
+			}
+		});
         
         // user
- 		btn_title = new JButton(new ImageIcon("./images/prof.png"));
+ 		btn_title = new JButton(new ImageIcon("Final/images/game_student.png"));
  		btn_title.setBounds(20, 90, 180, 190);
  		btn_title.setBorderPainted(false);
  		btn_title.setContentAreaFilled(false);
@@ -82,19 +85,19 @@ public class Setting extends JPanel implements ActionListener{
  		userNameL = new JLabel(userName);
  		userNameL.setFont(font);
  		userNameL.setBorder(border);
- 		userNameL.setBounds(220, 90, 180, 50);
+ 		userNameL.setBounds(220, 100, 180, 50);
  		add(userNameL);
  		
  		userNameT = new TextField(15);
  		userNameT.setText(userName);
  		userNameT.setFont(font);
- 		userNameT.setBounds(220, 210, 180, 40);
+ 		userNameT.setBounds(220, 220, 180, 40);
  		userNameT.setVisible(false);
  		add(userNameT);
  		
  		btn_change = new JButton("이름바꾸기");
  		btn_change.setFont(font);
- 		btn_change.setBounds(220, 150, 180, 50);
+ 		btn_change.setBounds(220, 160, 180, 50);
  		add(btn_change);
  		btn_change.addActionListener(this);
  		
