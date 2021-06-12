@@ -30,6 +30,7 @@ public class StartFrame extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();	//모니터 화면의 크기 구하기
 		setLocation((screenSize.width - frameSize.width)/2, (screenSize.height - frameSize.height)/2);
 		//모니터가로 - 프레임 가로 / 2, 모니터세로 - 프레임 세로 / 2
+		//setUndecorated(true);
 		setVisible(true);
 	}
 	
@@ -47,26 +48,6 @@ public class StartFrame extends JFrame {
     		tf_setting.requestFocus();
     }
 	
-//	public void changeLabel(String name) {
-//    	//cards.show(getContentPane(), name);
-//    	
-//		JLabel alphabetlabel = new JLabel("    낱말연습: 한 글자씩 자리를 익혀보세요!");
-//		JLabel wordlabel = new JLabel("    단어연습: 자바 프로그래밍에 필요한 여러 단어들을 학습합니다!");
-//		JLabel linelabel = new JLabel("    긴글연습: 실제로 프로그래밍을 하는 것처럼 줄글로 마스터!");
-//		JLabel gamelabel = new JLabel("    게임: 위에서 떨어지는 단어들을 없애주세요!");
-//		
-//    	if (name.equals("Alphabet")) {
-//    		tf_alphabet.requestFocus();
-//    	else if (name.equals("Word"))
-//    		tf_word.requestFocus();
-//    	else if (name.equals("Line"))
-//    		tf_line.requestFocus();
-//    	else if (name.equals("Game"))
-//    		tf_game.requestFocus();
-//    	else if (name.equals("Setting"))
-//    		tf_setting.requestFocus();
-//    }
-	
 	public TextField getCode() {
 		return tf_code;
 	}
@@ -76,14 +57,6 @@ public class StartFrame extends JFrame {
 	public TextField getSetting() {
 		return tf_setting;
 	}
-		
-//	public void newPanel(String name) {
-//		getContentPane().add("Main", new Main(this));
-//	}
-//     
-//    public CardLayout getCardLayout() {
-//    	 return cards;
-//    }
 
 	public static void main(String[] args) {
 		new StartFrame();
