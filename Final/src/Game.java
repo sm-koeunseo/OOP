@@ -56,29 +56,14 @@ public class Game extends Frame {
                             new Level(100, 500, 4000, data[3]), };
      
     Vector words = new Vector();
-     
     TextField tf = new TextField();
-    //Panel pScore = new Panel(new GridLayout(1, 3));
     Panel panel_level = new Panel();
     Panel panel_score = new Panel();
     Panel panel_life = new Panel();
-    
     JButton btn_game = new JButton();
-    
-    //Panel user  = new Panel();
-    //Panel professor = new Panel();
-    
     JButton user = new JButton();
     JButton professor = new JButton();
-
-
-   
-    //Label label_game = new Label("GAME");
-    
     Label lbLevel = new Label("Level:" + curLevel, Label.CENTER);
-  
-   
-    
     Label lbScore = new Label("Score:" + score, Label.CENTER);
     Label lbLife = new Label("Life:" + life, Label.CENTER);
     MyCanvas screen = new MyCanvas();
@@ -108,27 +93,21 @@ public class Game extends Frame {
         
         panel_life.setBackground(Color.white);
         panel_life.add(lbLife);
-        
-        //pScore.setBackground(Color.pink);
-        //pScore.add(lbLevel);
-        //pScore.add(lbScore);
-        //pScore.add(lbLife);
+
         screen.setBackground(Color.white);
         
         
         panel_level.setBounds(20, 40, 170, 40);
         panel_score.setBounds(206, 40, 170, 40);
         panel_life.setBounds(392, 40, 170, 40);
-        //btn_game.setBackground(Color.white);
-        //btn_game.add(label_game);
+
         btn_game.setBounds(580, 90, 180, 50);
         btn_game.setBorderPainted(false);
         btn_game.setContentAreaFilled(false);
         ImageIcon btn_g = new ImageIcon("Final/images/btn_game.png");
         ImageIcon user_smile = new ImageIcon("Final/images/game_student.png");
-        ImageIcon user_sad = new ImageIcon("Final/images/game_cry.png");
         ImageIcon professor_smile = new ImageIcon("Final/images/game_smile.png");
-        ImageIcon professor_sad = new ImageIcon("Final/images/game_angry.png");
+        
         
         
         btn_game.setIcon(btn_g);
@@ -161,10 +140,8 @@ public class Game extends Frame {
         add(panel_level);
         add(panel_score);
         add(panel_life);
-        
-        //add(pScore, "North");
         add(screen, "Center");
-        //add(tf, "South");
+     
         
         add(new MyCanvas());
      
@@ -522,33 +499,11 @@ public class Game extends Frame {
         }
      
         public void windowClosing(WindowEvent e) {
-//            f.setVisible(true);
-//            System.exit(0);
-           //System.out.println("test!");
+
            this.windowClosed(e);
             e.getWindow().setVisible(false);
             e.getWindow().dispose();
            f.setVisible(true);
         }
     } 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    public static void main(String[] args) {
-//       Game game = new Game(); 
-//       game.start();                            
-//    } 
 }
