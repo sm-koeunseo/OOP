@@ -42,7 +42,7 @@ public class Word extends JPanel{
 		border = BorderFactory.createLineBorder(Color.BLUE, 3);
 		
 		// title
-		btn_title = new JButton(new ImageIcon("./images/btn_word.png"));
+		btn_title = new JButton(new ImageIcon("Final/images/btn_word.png"));
 		btn_title.setBounds(280, 10, 220, 60);
 		btn_title.setBorderPainted(false);
 		btn_title.setContentAreaFilled(false);
@@ -88,7 +88,7 @@ public class Word extends JPanel{
 		add(ratingB);
 		
 		// btn_prof
-		btn_prof = new JButton(new ImageIcon("./images/prof.png"));
+		btn_prof = new JButton(new ImageIcon("Final/images/prof.png"));
 		btn_prof.setBounds(580, 350, 180, 190);
 		btn_prof.setBorderPainted(false);
 		btn_prof.setContentAreaFilled(false);
@@ -104,7 +104,7 @@ public class Word extends JPanel{
 		circle = new JButton[26];
 		int x = 80, y = 345;
 		for(int i = 0; i < 26; i++) {
-			circle[i] = new JButton(new ImageIcon("./images/circle.png"));
+			circle[i] = new JButton(new ImageIcon("Final/images/circle.png"));
 			circle[i].setBounds(x, y, 10, 10);
 			circle[i].setBorderPainted(false);
 			circle[i].setContentAreaFilled(false);
@@ -167,7 +167,7 @@ public class Word extends JPanel{
 		add(label[2]);
 		
 		// keyboard
-		key = new JButton(new ImageIcon("./images/key.png"));
+		key = new JButton(new ImageIcon("Final/images/key.png"));
 		key.setBounds(20, 240, 540, 300);
 		key.setBorderPainted(false);
 		key.setContentAreaFilled(false);

@@ -24,7 +24,7 @@ public class IOWord {
 	public String[] getWords() {
 		try {
 			
-			fname = "./text/" + random.nextInt(2) + ".txt";
+			fname = "Final/text/" + random.nextInt(2) + ".txt";
 			fr = new FileReader(fname);
 			br = new BufferedReader(fr);
 			
@@ -54,7 +54,7 @@ public class IOWord {
 	
 	public void setScore(int score) {
 		try {
-			fr = new FileReader("./text/WordScores.txt");
+			fr = new FileReader("Finaltext/WordScores.txt");
 			br = new BufferedReader(fr);
 			
 			s2 = "";
@@ -78,7 +78,7 @@ public class IOWord {
 		
 		
 		try {
-			fw = new FileWriter(new File("./text/WordScores.txt"));
+			fw = new FileWriter(new File("Final/text/WordScores.txt"));
 			bw = new BufferedWriter(fw);
 			
 			for (int i = 0; i < length - 1; i++) {
