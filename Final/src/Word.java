@@ -23,6 +23,8 @@ public class Word extends JPanel{
 	private Border border;
 	
 	public void setFocus() {
+		userInput.setText("");
+		tf.setText("");
 		tf.requestFocus();
 		words = iw.getWords();
 		count = 2; score = 0;

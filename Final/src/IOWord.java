@@ -1,7 +1,14 @@
-
-
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+import java.util.StringTokenizer;
 
 public class IOWord {
 	String fname;
@@ -9,13 +16,13 @@ public class IOWord {
 	FileWriter fw;
 	BufferedReader br;
 	BufferedWriter bw;
-	String s1 = "", s2 = "";
 	StringTokenizer parse;
+	String s1 = "", s2 = "", time;
 	int length;
-	String[] words;
-	String name;
-	String[] scores;
+	String[] words, scores, times;
 	Random random = new Random();
+	Date date;
+	SimpleDateFormat sdf;
 	
 	public IOWord() {
 		random.setSeed(System.currentTimeMillis());
@@ -54,7 +61,7 @@ public class IOWord {
 	
 	public void setScore(int score) {
 		try {
-			fr = new FileReader("Finaltext/WordScores.txt");
+			fr = new FileReader("Final/text/WordScores.txt");
 			br = new BufferedReader(fr);
 			
 			s2 = "";
@@ -62,11 +69,14 @@ public class IOWord {
 				s2 += s1 + "\t";
 			}
 			StringTokenizer parse = new StringTokenizer(s2, "\t");
-			length = parse.countTokens();
+			length = parse.countTokens() / 2;
 			
 			scores = new String[length];
-			for(int i = 0; i < length; i++)
+			times = new String[length];
+			for(int i = 0; i < length; i++) {
 				scores[i] = parse.nextToken();
+				times[i] = parse.nextToken();
+			}
 			
 			br.close();
 			fr.close();
@@ -76,16 +86,17 @@ public class IOWord {
 			e.printStackTrace();
 		}
 		
-		
 		try {
 			fw = new FileWriter(new File("Final/text/WordScores.txt"));
 			bw = new BufferedWriter(fw);
 			
-			for (int i = 0; i < length - 1; i++) {
-				bw.write("" + scores[i]);
+			for (int i = 0; i < length; i++) {
+				bw.write("" + scores[i] + "\t" + times[i]);
 				bw.newLine();
 			}
-			bw.write("" + score);
+			date = new Date();
+			sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			bw.write("" + score + "\t" + sdf.format(date));
 			
 			bw.close();
 			fw.close();
@@ -95,14 +106,4 @@ public class IOWord {
 			e.printStackTrace();
 		}
 	}
-	
-//	public static void main(String[] args) {
-//		IOWord iw = new IOWord();
-//		String[] test = iw.getWords();
-//		
-//		for (int i = 0; i < test.length; i++) {
-//			System.out.println(test[i]);
-//		}
-//	}
-
 }
