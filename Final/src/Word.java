@@ -184,7 +184,7 @@ public class Word extends JPanel{
 		add(userInput);
 		
 		// input field
-		tf = f.getWord();
+		tf = new JTextField();
 		tf.setBounds(-60, 60, 40, 50);
 		tf.setFocusTraversalKeysEnabled(false);
 		add(tf);

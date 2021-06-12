@@ -24,6 +24,10 @@ public class Alphabet extends JPanel implements KeyListener {
 	private JLabel UserTypo, UserAccuracy;
 	int usercnt = 0;
 	int rightcnt = 0, wrongcnt = 0;
+	
+	public void setFocus() {
+		tf_userInput.requestFocus();
+	}
 
 	/**** 생성자 ****/
 	public Alphabet(StartFrame f) {
@@ -108,7 +112,7 @@ public class Alphabet extends JPanel implements KeyListener {
 		add(UserType);
 
 		/**** 사용자 입력 필드 ****/
-		tf_userInput = f.getAlphabet();
+		tf_userInput = new JTextField();
 		tf_userInput.setBounds(1000, 800, 5, 5);
 		add(tf_userInput);
 		
