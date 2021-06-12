@@ -1,15 +1,9 @@
-package taja.word;
-import taja.main.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
-
-import IO.IOName;
-import IO.IOWord;
 
 public class Word extends JPanel{
 	private StartFrame f;

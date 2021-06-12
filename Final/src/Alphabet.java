@@ -1,6 +1,3 @@
-package taja.alphabet;
-
-import taja.main.*;
 import java.awt.*;
 import java.awt.List;
 import java.awt.event.*;

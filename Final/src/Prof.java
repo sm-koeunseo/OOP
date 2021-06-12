@@ -1,4 +1,4 @@
-package taja.word;
+
 import javax.swing.JLabel;
 
 public class Prof extends Thread {
