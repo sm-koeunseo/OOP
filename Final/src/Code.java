@@ -14,16 +14,21 @@ public class Code extends JPanel implements KeyListener {
 	private JButton btn_home, btn_title, btn_prof; // 홈버튼, 제목
 	private JPanel panel_prof, panel_username;
 	private JTextField tf_userInput; // 사용자 입력 텍스트 필드
-	private ArrayList<String> list_whole = new ArrayList<String>(); // 전체 알파벳 리스트
-	private ArrayList<String> list_choice = new ArrayList<String>(); // 랜덤하게 뽑은 20개 알파벳 리스트
+//	private ArrayList<String> list_whole = new ArrayList<String>(); // 전체 알파벳 리스트
 	private ArrayList<Character> list_user = new ArrayList<Character>(); // 사용자 입력 문자 리스트
 	private int maxCount; // 입력할 알파벳 개수(20개)
-	private int count = 0, ranNum; // 사용자가 입력한 알파벳 개수 count, 랜덤하게 알파벳 뽑을 때 사용하는 변수
 	private JLabel CodeOne, CodeTwo, CodeThree, CodeFour; // 입력할 알파벳들이 뜨는 label 4개
 	private JLabel UserOne, UserTwo, UserThree, UserFour;
 	private JLabel UserTypo, UserAccuracy;
-	int usercnt = 0;
+	int usercnt = 0, rowcnt = 0, colcnt = 0;
 	int rightcnt = 0, wrongcnt = 0;
+	private Font font;
+	private char[][] list_compare;
+	private String[] list_whole;
+
+	public void setFocus() {
+		tf_userInput.requestFocus();
+	}
 
 	/**** 생성자 ****/
 	public Code(StartFrame f) {
@@ -31,21 +36,22 @@ public class Code extends JPanel implements KeyListener {
 		this.f = f;
 		setLayout(null);
 		setBackground(new Color(239, 239, 143));
+		font = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20);
 
-		list_whole.add("test입니다");
-		list_whole.add("test2");
-		list_whole.add("test3");
-		list_whole.add("test4");
-		list_whole.add("test5");
-		list_whole.add("test6");
-		list_whole.add("test7");
-		list_whole.add("test8");
-		list_whole.add("test9");
-		list_whole.add("test10");
-		System.out.println(list_whole);
-		list_choice = MakeList();
-		System.out.println(list_choice);
-		maxCount = list_choice.size();
+		String[] list_whole = { "public static void main(String[] args) {", "System.out.print(\"Hello \");",
+				"if (args.length > 0) {", "System.out.println(args[1]);", "} else {", "System.out.println(\"?????\");",
+				"}", "}" };
+
+		maxCount = list_whole.length;
+		list_compare = new char[maxCount][100];
+
+		for (int i = 0; i < maxCount; i++) {
+			int strlen = list_whole[i].toCharArray().length;
+
+			for (int j = 0; j < strlen; j++) {
+				list_compare[i][j] = list_whole[i].toCharArray()[j];
+			}
+		}
 
 		/**** 홈 버튼 설정 ****/
 		btn_home = new JButton("홈");
@@ -54,7 +60,7 @@ public class Code extends JPanel implements KeyListener {
 
 		/**** 게임 제목 버튼 설정 ****/
 		btn_title = new JButton(new ImageIcon("Final/images/btn_long.png"));
-		btn_title.setBounds(280, 30, 220, 60);
+		btn_title.setBounds(280, 15, 220, 60);
 		btn_title.setBorderPainted(false);
 		btn_title.setContentAreaFilled(false);
 		btn_title.setFocusPainted(false);
@@ -81,24 +87,23 @@ public class Code extends JPanel implements KeyListener {
 
 		/**** 게임 패널 ****/
 		CodeOne = new JLabel();
-		CodeOne.setFont(new Font("Serif", Font.BOLD, 20));
-		// CodeOne.setFont(new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20));
+		CodeOne.setFont(font);
 		CodeTwo = new JLabel();
-		CodeTwo.setFont(new Font("Serif", Font.BOLD, 20));
+		CodeTwo.setFont(font);
 		CodeThree = new JLabel();
-		CodeThree.setFont(new Font("Serif", Font.BOLD, 20));
+		CodeThree.setFont(font);
 		CodeFour = new JLabel();
-		CodeFour.setFont(new Font("Serif", Font.BOLD, 20));
+		CodeFour.setFont(font);
 
-		CodeOne.setText(list_choice.get(0).toString());
-		CodeTwo.setText(list_choice.get(1).toString());
-		CodeThree.setText(list_choice.get(2).toString());
-		CodeFour.setText(list_choice.get(3).toString());
+		CodeOne.setText(list_whole[0].toString());
+		CodeTwo.setText(list_whole[1].toString());
+		CodeThree.setText(list_whole[2].toString());
+		CodeFour.setText(list_whole[3].toString());
 
-		CodeOne.setBounds(70, 150, 470, 40);
-		CodeTwo.setBounds(70, 240, 470, 40);
-		CodeThree.setBounds(70, 330, 470, 40);
-		CodeFour.setBounds(70, 420, 470, 40);
+		CodeOne.setBounds(60, 150, 470, 40);
+		CodeTwo.setBounds(60, 240, 470, 40);
+		CodeThree.setBounds(60, 330, 470, 40);
+		CodeFour.setBounds(60, 420, 470, 40);
 
 		add(CodeOne);
 		add(CodeTwo);
@@ -106,31 +111,31 @@ public class Code extends JPanel implements KeyListener {
 		add(CodeFour);
 
 		//// 입력문자 출력
-		UserOne = new JLabel();
-		UserOne.setFont(new Font("Serif", Font.BOLD, 40));
-		UserOne.setBounds(70, 150, 470, 40);
+		UserOne = new JLabel("");
+		UserOne.setFont(font);
+		UserOne.setBounds(60, 200, 470, 40);
+
 		add(UserOne);
-		
-		UserTwo = new JLabel();
-		UserTwo.setFont(new Font("Serif", Font.BOLD, 40));
-		UserTwo.setBounds(70, 240, 470, 40);
+
+		UserTwo = new JLabel("");
+		UserTwo.setFont(font);
+		UserTwo.setBounds(60, 290, 470, 40);
 		add(UserTwo);
-		
-		UserThree = new JLabel();
-		UserThree.setFont(new Font("Serif", Font.BOLD, 40));
-		UserThree.setBounds(70, 330, 470, 40);
+
+		UserThree = new JLabel("");
+		UserThree.setFont(font);
+		UserThree.setBounds(60, 380, 470, 40);
 		add(UserThree);
-		
-		UserFour = new JLabel();
-		UserFour.setFont(new Font("Serif", Font.BOLD, 40));
-		UserFour.setBounds(70, 420, 470, 40);
+
+		UserFour = new JLabel("");
+		UserFour.setFont(font);
+		UserFour.setBounds(60, 470, 470, 40);
 		add(UserFour);
 
 		/**** 사용자 입력 필드 ****/
 		tf_userInput = new JTextField();
-		tf_userInput.setBounds(1000, 800, 5, 5);
+		tf_userInput.setBounds(-10, 10, 10, 10);
 		add(tf_userInput);
-
 		tf_userInput.addKeyListener(this);
 
 		btn_home.addActionListener(new ActionListener() {
@@ -151,17 +156,6 @@ public class Code extends JPanel implements KeyListener {
 		UserAccuracy.setBounds(600, 220, 300, 100);
 		add(UserAccuracy);
 	}
-	
-	public ArrayList<String> MakeList() {
-
-		for (int i = 0; i <5; i++) {
-			ranNum = (int) (Math.random() * 10);
-			list_choice.add(list_whole.get(ranNum));
-		}
-
-		return list_choice;
-	}
-	
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -178,30 +172,58 @@ public class Code extends JPanel implements KeyListener {
 		// CodeOne
 		g2.setColor(Color.white);
 		g2.fill(new RoundRectangle2D.Double(55, 150, 470, 40, 30, 30)); // 배경
-		g2.setColor(Color.red);
-		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(55, 150, 470, 40, 30, 30)); // 테두리
+//		g2.setColor(Color.red);
+//		g2.setStroke(new BasicStroke(5));
+//		g2.draw(new RoundRectangle2D.Double(55, 150, 470, 40, 30, 30)); // 테두리
+
+		// UserOne
+		g2.setColor(Color.white);
+		g2.fill(new Rectangle2D.Double(56, 200, 467, 40)); // 배경
+		g2.setColor(Color.LIGHT_GRAY);
+		g2.setStroke(new BasicStroke(3));
+		g2.draw(new Rectangle2D.Double(56, 200, 467, 30)); // 테두리
 
 		// CodeTwo
 		g2.setColor(Color.white);
 		g2.fill(new RoundRectangle2D.Double(55, 240, 470, 40, 30, 30)); // 배경
-		g2.setColor(Color.red);
-		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(55, 240, 470, 40, 30, 30)); // 테두리
+//		g2.setColor(Color.red);
+//		g2.setStroke(new BasicStroke(5));
+//		g2.draw(new RoundRectangle2D.Double(55, 240, 470, 40, 30, 30)); // 테두리
+
+		// UserTwo
+		g2.setColor(Color.white);
+		g2.fill(new Rectangle2D.Double(56, 290, 467, 40)); // 배경
+		g2.setColor(Color.LIGHT_GRAY);
+		g2.setStroke(new BasicStroke(3));
+		g2.draw(new Rectangle2D.Double(56, 290, 467, 30)); // 테두리
 
 		// CodeThree
 		g2.setColor(Color.white);
 		g2.fill(new RoundRectangle2D.Double(55, 330, 470, 40, 30, 30)); // 배경
-		g2.setColor(Color.red);
-		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(55, 330, 470, 40, 30, 30)); // 테두리
+//		g2.setColor(Color.red);
+//		g2.setStroke(new BasicStroke(5));
+//		g2.draw(new RoundRectangle2D.Double(55, 330, 470, 40, 30, 30)); // 테두리
+
+		// UserThree
+		g2.setColor(Color.white);
+		g2.fill(new Rectangle2D.Double(56, 380, 467, 40)); // 배경
+		g2.setColor(Color.LIGHT_GRAY);
+		g2.setStroke(new BasicStroke(3));
+		g2.draw(new Rectangle2D.Double(56, 380, 467, 30)); // 테두리
 
 		// CodeFour
 		g2.setColor(Color.white);
-		g2.fill(new RoundRectangle2D.Double(55, 420,470, 40, 30, 30)); // 배경
-		g2.setColor(Color.red);
-		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(55, 420, 470, 40, 30, 30)); // 테두리
+		g2.fill(new RoundRectangle2D.Double(55, 420, 470, 40, 30, 30)); // 배경
+//		g2.setColor(Color.red);
+//		g2.setStroke(new BasicStroke(5));
+//		g2.draw(new RoundRectangle2D.Double(55, 420, 470, 40, 30, 30)); // 테두리
+
+		// UserFour
+		g2.setColor(Color.white);
+		g2.fill(new Rectangle2D.Double(56, 470, 467, 40)); // 배경
+		g2.setColor(Color.LIGHT_GRAY);
+		g2.setStroke(new BasicStroke(3));
+		g2.draw(new Rectangle2D.Double(56, 470, 467, 30)); // 테두리
 
 		// user typing background
 //		g2.setColor(Color.yellow);
@@ -209,35 +231,62 @@ public class Code extends JPanel implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
+		System.out.println(e.getKeyChar());
+		if (e.getKeyChar() == ' ') {
+			colcnt++;
+		} else if(e.getKeyChar() == '\n') {
+			rowcnt++;
+			colcnt = 0;
+			tf_userInput.setText("");
+		}else if(e.getKeyChar() == KeyEvent.VK_BACK_SPACE){
+			if(colcnt == 0) {
+				colcnt = 0;
+			}
+			else {
+				colcnt--;
+			}
+			
+		}else {
+			list_user.add(e.getKeyChar());
+			usercnt = list_user.size();
 
-		list_user.add(e.getKeyChar());
-		usercnt = list_user.size();
-		UserOne.setText(list_user.get(usercnt - 1).toString());
+			if (list_compare[rowcnt][colcnt] == list_user.get(usercnt - 1)) {
+				colcnt++;
+				rightcnt++;
 
-		if (list_choice.get(rightcnt).equals(e.getKeyChar())) {
-			if (rightcnt == maxCount - 1) {
-				UserTypo.setText("오타 수 : " + wrongcnt + "개");
-				UserAccuracy.setText("정확도: "
-						+ Math.round((double) rightcnt / ((double) wrongcnt + (double) rightcnt) * 10000) / 100.0
-						+ "%");
-				JOptionPane.showMessageDialog(null, "게임 종료!");
+				if (colcnt == list_compare[rowcnt].length || e.getKeyChar() == '\n') {
+					rowcnt++;
+				}
+
 			} else {
+				colcnt++;
+				wrongcnt++;
 
 			}
-			UserOne.setForeground(Color.black);
-			UserOne.setText(list_user.get(usercnt - 1).toString());
-
-			rightcnt++;
-		} else {
-			wrongcnt++;
-			UserOne.setForeground(Color.red);
-			UserOne.setText(list_user.get(usercnt - 1).toString());
 
 		}
 
 	}
 
 	public void keyReleased(KeyEvent e) {
+		switch (rowcnt) {
+		case 0:
+			UserOne.setForeground(Color.black);
+			UserOne.setText(tf_userInput.getText());
+			break;
+		case 1:
+			UserTwo.setForeground(Color.black);
+			UserTwo.setText(tf_userInput.getText());
+			break;
+		case 2:
+			UserThree.setForeground(Color.black);
+			UserThree.setText(tf_userInput.getText());
+			break;
+		case 3:
+			UserFour.setForeground(Color.black);
+			UserFour.setText(tf_userInput.getText());
+			break;
+		}
 	}
 
 	public void keyPressed(KeyEvent e) {

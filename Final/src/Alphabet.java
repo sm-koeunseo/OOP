@@ -24,6 +24,7 @@ public class Alphabet extends JPanel implements KeyListener {
 	private JLabel UserTypo, UserAccuracy;
 	int usercnt = 0;
 	int rightcnt = 0, wrongcnt = 0;
+	private Font font;
 	
 	public void setFocus() {
 		tf_userInput.requestFocus();
@@ -35,18 +36,20 @@ public class Alphabet extends JPanel implements KeyListener {
 		this.f = f;
 		setLayout(null);
 		setBackground(new Color(239, 239, 143));
+		font = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 35);
 
 		list_choice = MakeList();
 		maxCount = list_choice.size();
 
 		/**** 홈 버튼 설정 ****/
-		btn_home = new JButton("홈");
+		Image img_home = new ImageIcon("Final/images/home.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btn_home = new JButton(new ImageIcon(img_home));
 		add(btn_home);
 		btn_home.setBounds(700, 20, 50, 40);
 
 		/**** 게임 제목 버튼 설정 ****/
 		btn_title = new JButton(new ImageIcon("Final/images/btn_alpha.png"));
-		btn_title.setBounds(280, 30, 220, 60);
+		btn_title.setBounds(280, 15, 220, 60);
 		btn_title.setBorderPainted(false);
 		btn_title.setContentAreaFilled(false);
 		btn_title.setFocusPainted(false);
@@ -81,24 +84,23 @@ public class Alphabet extends JPanel implements KeyListener {
 
 		/**** 게임 패널 ****/
 		AlphaOne = new JLabel();
-		AlphaOne.setFont(new Font("Serif", Font.BOLD, 38));
-		//AlphaOne.setFont(new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20));
+		AlphaOne.setFont(font);
 		AlphaTwo = new JLabel();
-		AlphaTwo.setFont(new Font("Serif", Font.BOLD, 38));
+		AlphaTwo.setFont(font);
 		AlphaThree = new JLabel();
-		AlphaThree.setFont(new Font("Serif", Font.BOLD, 38));
+		AlphaThree.setFont(font);
 		AlphaFour = new JLabel();
-		AlphaFour.setFont(new Font("Serif", Font.BOLD, 38));
+		AlphaFour.setFont(font);
 
 		AlphaOne.setText("");
 		AlphaTwo.setText(list_choice.get(0).toString());
 		AlphaThree.setText(list_choice.get(1).toString());
 		AlphaFour.setText(list_choice.get(2).toString());
 
-		AlphaOne.setBounds(95, 95, 40, 90);
-		AlphaTwo.setBounds(210, 95, 40, 90);
-		AlphaThree.setBounds(335, 95, 40, 90);
-		AlphaFour.setBounds(455, 95, 40, 90);
+		AlphaOne.setBounds(95, 120, 40, 90);
+		AlphaTwo.setBounds(210, 120, 40, 90);
+		AlphaThree.setBounds(335, 120, 40, 90);
+		AlphaFour.setBounds(455, 120, 40, 90);
 
 		add(AlphaOne);
 		add(AlphaTwo);
@@ -107,8 +109,8 @@ public class Alphabet extends JPanel implements KeyListener {
 		
 		////입력문자 출력
 		UserType = new JLabel();
-		UserType.setFont(new Font("Serif", Font.BOLD, 40));
-		UserType.setBounds(275, 200, 50, 100);
+		UserType.setFont(font);
+		UserType.setBounds(275, 220, 50, 100);
 		add(UserType);
 
 		/**** 사용자 입력 필드 ****/
@@ -126,13 +128,13 @@ public class Alphabet extends JPanel implements KeyListener {
 		});
 
 		UserTypo = new JLabel();
-		UserTypo.setFont(new Font("Serif", Font.BOLD, 20));
+		UserTypo.setFont(new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20));
 		UserTypo.setText("오타 수: ");
 		UserTypo.setBounds(600, 170, 300, 100);
 		add(UserTypo);
 
 		UserAccuracy = new JLabel();
-		UserAccuracy.setFont(new Font("Serif", Font.BOLD, 20));
+		UserAccuracy.setFont(new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20));
 		UserAccuracy.setText("정확도: ");
 		UserAccuracy.setBounds(600, 220, 300, 100);
 		add(UserAccuracy);
@@ -141,7 +143,7 @@ public class Alphabet extends JPanel implements KeyListener {
 		/****키보드****/
 		Image img_keyboard = new ImageIcon("Final/images/key.png").getImage().getScaledInstance(472, 164,Image.SCALE_SMOOTH);
 		btn_keyboard = new JButton(new ImageIcon(img_keyboard));
-		btn_keyboard.setBounds(20, 240, 540, 300);
+		btn_keyboard.setBounds(20, 260, 540, 300);
 		btn_keyboard.setBorderPainted(false);
 		btn_keyboard.setContentAreaFilled(false);
 		btn_keyboard.setFocusPainted(false);
@@ -178,44 +180,46 @@ public class Alphabet extends JPanel implements KeyListener {
 		
 		// AlphaOne
 		g2.setColor(Color.white);
-		g2.fill(new RoundRectangle2D.Double(65, 100, 85, 95, 30, 30)); // 배경
+		g2.fill(new RoundRectangle2D.Double(65, 120, 85, 95, 30, 30)); // 배경
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(65, 100, 85, 95, 30, 30)); // 테두리
+		g2.draw(new RoundRectangle2D.Double(65, 120, 85, 95, 30, 30)); // 테두리
 
 		// AlphaTwo
 		g2.setColor(Color.DARK_GRAY);
-		g2.fill(new RoundRectangle2D.Double(185, 100, 90, 100, 30, 30)); // 그림자
+		g2.fill(new RoundRectangle2D.Double(185, 120, 90, 100, 30, 30)); // 그림자
 		g2.setColor(Color.white);
-		g2.fill(new RoundRectangle2D.Double(180, 95, 85, 95, 30, 30)); // 배경
+		g2.fill(new RoundRectangle2D.Double(180, 115, 85, 95, 30, 30)); // 배경
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(180, 95, 85, 95, 30, 30)); // 테두리
+		g2.draw(new RoundRectangle2D.Double(180, 115, 85, 95, 30, 30)); // 테두리
 
 		// AlphaThree
 		g2.setColor(Color.white);
-		g2.fill(new RoundRectangle2D.Double(305, 100, 85, 95, 30, 30)); // 배경
+		g2.fill(new RoundRectangle2D.Double(305, 120, 85, 95, 30, 30)); // 배경
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(305, 100, 85, 95, 30, 30)); // 테두리
+		g2.draw(new RoundRectangle2D.Double(305, 120, 85, 95, 30, 30)); // 테두리
 
 		// AlphaFour
 		g2.setColor(Color.white);
-		g2.fill(new RoundRectangle2D.Double(425, 100, 85, 95, 30, 30)); // 배경
+		g2.fill(new RoundRectangle2D.Double(425, 120, 85, 95, 30, 30)); // 배경
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(5));
-		g2.draw(new RoundRectangle2D.Double(425, 100, 85, 95, 30, 30)); // 테두리
+		g2.draw(new RoundRectangle2D.Double(425, 120, 85, 95, 30, 30)); // 테두리
 		
 		//user typing background
-		g2.setColor(Color.yellow);
-		g2.fill(new Rectangle2D.Double(55, 220, 470, 60));
+		g2.setColor(Color.white);
+		g2.fill(new Rectangle2D.Double(55, 240, 470, 60));
+		g2.setColor(Color.LIGHT_GRAY);
+		g2.setStroke(new BasicStroke(5));
+		g2.draw(new Rectangle2D.Double(55, 240, 470, 60));
 	}
 
 	public void keyTyped(KeyEvent e) {
 		
 		list_user.add(e.getKeyChar());
 		usercnt = list_user.size();
-		UserType.setText(list_user.get(usercnt-1).toString());
 
 		
 		if (list_choice.get(rightcnt).equals(e.getKeyChar())) {

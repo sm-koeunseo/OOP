@@ -1,26 +1,21 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class Main extends JPanel implements ActionListener{
 	private StartFrame f;
 	private Panel titlepanel,menupanel,textpanel,startpanel;
 	private JLabel titlelabel, menulabel, textlabel;
 	private JButton btn_alphabet, btn_word, btn_code, btn_game, btn_setting;
+	private ImageIcon btn_alpha, btn_wd, btn_long, btn_g, btn_settings, btn_start, btn_exit, btn_prof;
 	private JButton start, prof, exit;
+	private JTextField tf_main = new JTextField(300);
 	private String tmpPanel = "";
 	private Font font, font2, font3;
-	private JTextField tf_main = new JTextField(300) {
-		public void setBorder(Border border) { } 
-    };
-    
+
 	public Main(StartFrame f) {
 		this.f = f;		
 		setLayout(new BorderLayout());
-		tf_main.setLayout(null);
-		tf_main.setEnabled(false);
-		tf_main.setDisabledTextColor(Color.black);
 		
 		font = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 30);
 		font2 = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 15);
@@ -29,7 +24,7 @@ public class Main extends JPanel implements ActionListener{
 		titlepanel = new Panel();
 		Color color = new Color(239, 239, 143);
         setBackground(color);
-		titlelabel = new JLabel("<html><br/>윤용익 교수님과 함께하는 \"객체 타자연습\"<br/><br/></html>");
+		titlelabel = new JLabel("윤용익 교수님과 함께하는 \"객체 타자연습\"");
 		
 		titlelabel.setFont(font);
 		titlepanel.add(titlelabel);
@@ -117,7 +112,7 @@ public class Main extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		font3 = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 17);
+		font3 = new Font(("ELAND 나이스 Medium"), Font.PLAIN, 20);
 		tf_main.setFont(font3);
 		if(e.getSource() == btn_alphabet) {
 			tmpPanel = "Alphabet";
@@ -141,8 +136,6 @@ public class Main extends JPanel implements ActionListener{
 			}
 		}else if (e.getSource() == exit) {
 			System.exit(0);
-		}else if(e.getSource() == prof) {
-			tf_main.setText("    학생 여러분 화이팅!");
 		}
 	}
 }
