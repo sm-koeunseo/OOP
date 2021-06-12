@@ -141,6 +141,8 @@ public class Main extends JPanel implements ActionListener{
 			}
 		}else if (e.getSource() == exit) {
 			System.exit(0);
+		}else if(e.getSource() == prof) {
+			tf_main.setText("    학생 여러분 화이팅!");
 		}
 	}
 }
