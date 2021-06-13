@@ -1,6 +1,4 @@
-GUI
-OOP
-w
-e
-q
-a
+AWT
+swing
+size
+Components

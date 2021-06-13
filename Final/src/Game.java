@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
  
 public class Game extends Frame {
-   StartFrame f;
+   Main f;
     
     private int FRAME_WIDTH = 800;
     private int FRAME_HEIGHT = 600;
@@ -67,8 +67,9 @@ public class Game extends Frame {
     Label lbScore = new Label("Score:" + score, Label.CENTER);
     Label lbLife = new Label("Life:" + life, Label.CENTER);
     MyCanvas screen = new MyCanvas();
+    IOGame ig;
      
-    Game(StartFrame f, Point p) {
+    Game(Main f, Point p) {
         this("Game");
         this.f = f;
         setLocation(p);
@@ -265,6 +266,8 @@ public class Game extends Frame {
                     if (life <= 0) {
                         isPlaying = false;
                         showTitle("Game Over", 0);
+                        ig = new IOGame();
+                        ig.setScore(score);
                         try {
                      Thread.sleep(3000);
                   } catch (InterruptedException e) {
@@ -421,8 +424,6 @@ public class Game extends Frame {
         public void actionPerformed(ActionEvent ae) {
             String input = tf.getText().trim(); // 문자열의 앞뒤 공백 제거
             tf.setText("");
-     
-            System.out.println(input);
      
             if (!isPlaying)
                 return;

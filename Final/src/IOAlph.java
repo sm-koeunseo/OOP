@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-public class IOWord {
+public class IOAlph {
 	String fname;
 	FileReader fr;
 	FileWriter fw;
@@ -25,44 +25,9 @@ public class IOWord {
 	Date date;
 	SimpleDateFormat sdf;
 	
-	public IOWord() {
-		random.setSeed(System.currentTimeMillis());
-	}
-	
-	public String[] getWords() {
-		try {
-			
-			fname = "Final/text/" + random.nextInt(4) + ".txt";
-			fr = new FileReader(fname);
-			br = new BufferedReader(fr);
-			
-			s2 = "";
-			while((s1 = br.readLine()) != null) {
-				s2 += s1 + "\t";
-			}
-			StringTokenizer parse = new StringTokenizer(s2, "\t");
-			length = parse.countTokens();
-			
-			words = new String[length];
-			for (int i = 0; i < length; i++) {
-				words[i] = parse.nextToken();
-			}
-			
-			br.close();
-			fr.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return words;
-	}
-	
 	private void getScore() {
 		try {
-			fr = new FileReader("Final/text/WordScores.txt");
+			fr = new FileReader("Final/text/AlphScores.txt");
 			br = new BufferedReader(fr);
 			
 			s2 = "";
@@ -88,11 +53,11 @@ public class IOWord {
 		}
 	}
 	
-	public void setScore(int score) {
+	public void setScore(double score) {
 		getScore();
 		
 		try {
-			fw = new FileWriter(new File("Final/text/WordScores.txt"));
+			fw = new FileWriter(new File("Final/text/AlphScores.txt"));
 			bw = new BufferedWriter(fw);
 			
 			for (int i = 0; i < length; i++) {
@@ -147,7 +112,7 @@ public class IOWord {
 						tmpScores2[j + 1][1] = tmp;
 						
 					}
-				}else if (Integer.parseInt(tmpScores2[j][2]) < Integer.parseInt(tmpScores2[j + 1][2])) {
+				}else if (Double.parseDouble(tmpScores2[j][2]) < Double.parseDouble(tmpScores2[j + 1][2])) {
 					tmp = tmpScores2[j][2];
 					tmpScores2[j][2] = tmpScores2[j + 1][2];
 					tmpScores2[j + 1][2] = tmp;

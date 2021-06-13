@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-public class IOWord {
+public class IOGame {
 	String fname;
 	FileReader fr;
 	FileWriter fw;
@@ -25,44 +25,9 @@ public class IOWord {
 	Date date;
 	SimpleDateFormat sdf;
 	
-	public IOWord() {
-		random.setSeed(System.currentTimeMillis());
-	}
-	
-	public String[] getWords() {
-		try {
-			
-			fname = "Final/text/" + random.nextInt(4) + ".txt";
-			fr = new FileReader(fname);
-			br = new BufferedReader(fr);
-			
-			s2 = "";
-			while((s1 = br.readLine()) != null) {
-				s2 += s1 + "\t";
-			}
-			StringTokenizer parse = new StringTokenizer(s2, "\t");
-			length = parse.countTokens();
-			
-			words = new String[length];
-			for (int i = 0; i < length; i++) {
-				words[i] = parse.nextToken();
-			}
-			
-			br.close();
-			fr.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return words;
-	}
-	
 	private void getScore() {
 		try {
-			fr = new FileReader("Final/text/WordScores.txt");
+			fr = new FileReader("Final/text/GameScores.txt");
 			br = new BufferedReader(fr);
 			
 			s2 = "";
@@ -92,7 +57,7 @@ public class IOWord {
 		getScore();
 		
 		try {
-			fw = new FileWriter(new File("Final/text/WordScores.txt"));
+			fw = new FileWriter(new File("Final/text/GameScores.txt"));
 			bw = new BufferedWriter(fw);
 			
 			for (int i = 0; i < length; i++) {

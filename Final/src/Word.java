@@ -5,8 +5,8 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class Word extends JPanel{
-	private StartFrame f;
+public class Word extends JPanel implements ActionListener{
+	private Main f;
 	private Word p;
 	private JPanel main, title, user, professor;
 	private JButton btn_main, btn_title, btn_prof, btn_stud, key;
@@ -34,7 +34,7 @@ public class Word extends JPanel{
 		label[2].setText(words[1]);
 	}
 	
-	public Word(StartFrame f) {
+	public Word(Main f) {
 		// panel settings
 		this.f = f;
 		setLayout(null);
@@ -59,11 +59,7 @@ public class Word extends JPanel{
 		btn_main.setFocusPainted(false);
 		btn_main.setBounds(700, 10, 60, 60);
 		add(btn_main);
-		btn_main.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				f.changePanel("Main");
-			}
-		});
+		btn_main.addActionListener(this);
 		
 		// word
 		iw = new IOWord();
@@ -295,5 +291,10 @@ public class Word extends JPanel{
 		professor.setBackground(Color.white);
 		professor.setBounds(580, 350, 180, 190);
 		add(professor);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		JOptionPane.showMessageDialog(this, "단어연습을 종료합니다!", "Access", JOptionPane.INFORMATION_MESSAGE);
+		f.changePanel("Main");
 	}
 }

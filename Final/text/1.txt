@@ -1,6 +1,4 @@
-GUI
-OOP
-a
-b
-c
-d
+JPanel
+AbstractButton
+JList
+ComboBox
